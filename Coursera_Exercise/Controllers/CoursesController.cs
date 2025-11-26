@@ -50,5 +50,26 @@ namespace Coursera_Exercise.Controllers
             courses.Add(newCourse);
             return CreatedAtAction(nameof(GetCourseByID), new { id = newCourse.Id }, newCourse);
         }
+
+        [HttpPut("{id}")]
+        public IActionResult EditCourse(int id, Course editedCourse)
+        {
+            Course? course = courses.FirstOrDefault(c => c.Id == id);
+            if(course == null)
+            {
+                return NotFound();
+            }
+            if(courses.FirstOrDefault(c=>c.Id== editedCourse.Id)!=null && editedCourse.Id != course.Id)
+            {
+                return Conflict();
+            }
+
+            course.Id = editedCourse.Id;
+            course.Name = editedCourse.Name;
+            course.Instructor_id = editedCourse.Instructor_id;
+            course.Total_time = editedCourse.Total_time;
+            course.Credit = editedCourse.Credit;
+            return NoContent();
+        }
     }
 }

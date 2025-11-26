@@ -93,3 +93,14 @@ Content-Type: application/json
   "Total_time": 13,
   "Credit": 1
 }
+
+###
+PUT {{HostAddress}}/api/courses/3
+Content-type: application/json
+{
+  "Id": 3,
+  "Name": "Mssdasaw",
+  "Instructor_id": 4,
+  "Total_time": 22,
+  "Credit": 33
+}
