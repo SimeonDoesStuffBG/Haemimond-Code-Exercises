@@ -10,11 +10,11 @@ namespace Coursera_Exercise.Controllers
     {
         private static List<Course> courses = new List<Course>
         {
-            new Course { Id = 1, Name="Programming basics", Instructor_id=3, Total_Time=23, Credit=20, Time_created = DateTime.Now},
-            new Course { Id = 2, Name="Object orianted programming", Instructor_id=3, Total_Time=13, Credit=1, Time_created = DateTime.Now},
-            new Course { Id = 3, Name="Parody", Instructor_id=2, Total_Time=22,Credit=22, Time_created =DateTime.Now},
-            new Course { Id = 4, Name="Creative Writing", Instructor_id=5, Total_Time=43, Credit=9, Time_created = DateTime.Now},
-            new Course { Id = 5, Name="Elvish", Instructor_id=1, Total_Time=34, Credit=23, Time_created = DateTime.Now},
+            new Course { Id = 1, Name="Programming basics", Instructor_id=3, Total_time=23, Credit=20, Time_created = DateTime.Now},
+            new Course { Id = 2, Name="Object orianted programming", Instructor_id=3, Total_time=13, Credit=1, Time_created = DateTime.Now},
+            new Course { Id = 3, Name="Parody", Instructor_id=2, Total_time=22,Credit=22, Time_created =DateTime.Now},
+            new Course { Id = 4, Name="Creative Writing", Instructor_id=5, Total_time=43, Credit=9, Time_created = DateTime.Now},
+            new Course { Id = 5, Name="Elvish", Instructor_id=1, Total_time=34, Credit=23, Time_created = DateTime.Now},
         };
 
         [HttpGet]
@@ -33,6 +33,22 @@ namespace Coursera_Exercise.Controllers
             }
 
             return Ok(course);
+        }
+
+        [HttpPost]
+        public ActionResult<Course> CreateCourse(Course newCourse)
+        {
+            if(newCourse == null)
+            {
+                return NotFound();
+            }
+            if(courses.FirstOrDefault(c=>c.Id == newCourse.Id)!=null)
+            {
+                return Conflict();
+            }
+
+            courses.Add(newCourse);
+            return CreatedAtAction(nameof(GetCourseByID), new { id = newCourse.Id }, newCourse);
         }
     }
 }

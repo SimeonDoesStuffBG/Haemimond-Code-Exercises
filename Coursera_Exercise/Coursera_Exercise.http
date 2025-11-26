@@ -82,3 +82,14 @@ Accept: application/json
 
 GET {{HostAddress}}/api/courses/3
 Accept: application/json
+
+###
+POST {{HostAddress}}/api/courses
+Content-Type: application/json
+{
+  "Id": 6,
+  "name": "Spice",
+  "instructor_id": 3,
+  "Total_time": 13,
+  "Credit": 1
+}
