@@ -10,8 +10,7 @@ Accept: application/json
 
 ###
 
-@pin=345
-GET {{HostAddress}}/api/students/{{pin}}
+GET {{HostAddress}}/api/students/134
 Accept: application/json
 
 ###
@@ -26,8 +25,7 @@ Content-type: application/json
 
 ###
 
-@pin=345
-PUT {{HostAddress}}/api/students/{{pin}}
+PUT {{HostAddress}}/api/students/345
 Content-type: application/json
 {
   "PIN":345,
@@ -37,8 +35,7 @@ Content-type: application/json
 
 ###
 
-@pin=345
-DELETE {{HostAddress}}/api/students/{{pin}}
+DELETE {{HostAddress}}/api/students/345
 Accept: application/json
 
 ###
@@ -48,8 +45,7 @@ Accept: application/json
 
 ###
 
-@id=2
-GET {{HostAddress}}/api/instructors/{{id}}
+GET {{HostAddress}}/api/instructors/2
 Accept: application/json
 
 ###
@@ -61,3 +57,18 @@ Content-type: application/json
   "First_name": "Jesus",
   "Last_name": "Christ"
 }
+
+###
+
+PUT {{HostAddress}}/api/instructors/4
+Content-Type: application/json
+{
+  "Id":6,
+  "First_name": "Michael",
+  "Last_name": "Morningstar"
+}
+
+###
+
+DELETE {{HostAddress}}/api/instructors/5
+Accept: application/json

@@ -38,7 +38,7 @@ namespace Coursera_Exercise.Controllers
         {
             if(newInstructor == null)
             {
-                return NotFound();
+                return BadRequest();
             }
             if (instructors.FirstOrDefault(i => i.Id == newInstructor.Id)!=null)
             {
@@ -47,6 +47,38 @@ namespace Coursera_Exercise.Controllers
 
             instructors.Add(newInstructor);
             return CreatedAtAction(nameof(GetInstructorByID), new { id = newInstructor.Id }, newInstructor);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult EditInstructor(int id, Instructor editedInstructor)
+        {
+            Instructor? instructor = instructors.FirstOrDefault(i=>i.Id==id);
+            if(instructor == null)
+            {
+                return NotFound();
+            }
+            if(instructors.FirstOrDefault(i=>i.Id==editedInstructor.Id)!=null && instructor.Id != editedInstructor.Id)
+            {
+                return Conflict();
+            }
+
+            instructor.Id = editedInstructor.Id;
+            instructor.First_name = editedInstructor.First_name;
+            instructor.Last_name = editedInstructor.Last_name;
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteInstructor(int id)
+        {
+            Instructor? instructor = instructors.FirstOrDefault(i => i.Id == id);
+            if (instructor == null)
+            {
+                return NotFound();
+            }
+
+            instructors.Remove(instructor);
+            return NoContent();
         }
     }
 }
