@@ -1,0 +1,46 @@
+@HostAddress = https://localhost:7000
+
+GET {{HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+GET {{HostAddress}}/api/students
+Accept: application/json
+
+###
+
+@pin=345
+GET {{HostAddress}}/api/students/{{pin}}
+Accept: application/json
+
+###
+
+POST {{HostAddress}}/api/students
+Content-type: application/json
+{
+  "PIN": 789,
+  "First_name":"Toph",
+  "Last_name":"Beifong"
+}
+
+###
+
+@pin=345
+PUT {{HostAddress}}/api/students/{{pin}}
+Content-type: application/json
+{
+  "PIN":345,
+  "First_Name":"Duncan",
+  "Last_Name":"Idaho"
+}
+
+###
+
+@pin=345
+DELETE {{HostAddress}}/api/students/{{pin}}
+Accept: application/json
+
+###
+
+GET {{HostAddress}}/api/instructors
