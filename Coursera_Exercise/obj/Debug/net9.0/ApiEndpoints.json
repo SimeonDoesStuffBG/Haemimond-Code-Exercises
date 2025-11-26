@@ -1,5 +1,25 @@
 [
   {
+    "ContainingType": "Coursera_Exercise.Controllers.CoursesController",
+    "Method": "GetCourses",
+    "RelativePath": "api/Courses",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Coursera_Exercise.Models.Course, Coursera_Exercise, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "Coursera_Exercise.Controllers.InstructorsController",
     "Method": "GetInstructors",
     "RelativePath": "api/Instructors",

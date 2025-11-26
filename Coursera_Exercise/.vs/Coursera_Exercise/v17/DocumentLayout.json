@@ -7,16 +7,16 @@
       "RelativeMoniker": "D:0:0:{3CB96D8C-F645-46FF-8344-2B0F8AFE33A5}|Coursera_Exercise.csproj|solutionrelative:coursera_exercise.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{3CB96D8C-F645-46FF-8344-2B0F8AFE33A5}|Coursera_Exercise.csproj|c:\\simeon\\coding\\coursera-api-example\\coursera_exercise\\controllers\\coursescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3CB96D8C-F645-46FF-8344-2B0F8AFE33A5}|Coursera_Exercise.csproj|solutionrelative:controllers\\coursescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3CB96D8C-F645-46FF-8344-2B0F8AFE33A5}|Coursera_Exercise.csproj|c:\\simeon\\coding\\coursera-api-example\\coursera_exercise\\controllers\\instructorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3CB96D8C-F645-46FF-8344-2B0F8AFE33A5}|Coursera_Exercise.csproj|solutionrelative:controllers\\instructorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3CB96D8C-F645-46FF-8344-2B0F8AFE33A5}|Coursera_Exercise.csproj|c:\\simeon\\coding\\coursera-api-example\\coursera_exercise\\models\\instructor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3CB96D8C-F645-46FF-8344-2B0F8AFE33A5}|Coursera_Exercise.csproj|solutionrelative:models\\instructor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3CB96D8C-F645-46FF-8344-2B0F8AFE33A5}|Coursera_Exercise.csproj|c:\\simeon\\coding\\coursera-api-example\\coursera_exercise\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{3CB96D8C-F645-46FF-8344-2B0F8AFE33A5}|Coursera_Exercise.csproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3CB96D8C-F645-46FF-8344-2B0F8AFE33A5}|Coursera_Exercise.csproj|c:\\simeon\\coding\\coursera-api-example\\coursera_exercise\\controllers\\studentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -45,25 +45,25 @@
           "SelectedChildIndex": 8,
           "Children": [
             {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CoursesController.cs",
+              "DocumentMoniker": "C:\\Simeon\\Coding\\Coursera-API-Example\\Coursera_Exercise\\Controllers\\CoursesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CoursesController.cs",
+              "ToolTip": "C:\\Simeon\\Coding\\Coursera-API-Example\\Coursera_Exercise\\Controllers\\CoursesController.cs",
+              "RelativeToolTip": "Controllers\\CoursesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T13:16:50.079Z",
+              "EditorCaption": ""
+            },
+            {
               "$type": "Bookmark",
               "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": ".gitignore",
-              "DocumentMoniker": "C:\\Simeon\\Coding\\Coursera-API-Example\\Coursera_Exercise\\.gitignore",
-              "RelativeDocumentMoniker": ".gitignore",
-              "ToolTip": "C:\\Simeon\\Coding\\Coursera-API-Example\\Coursera_Exercise\\.gitignore",
-              "RelativeToolTip": ".gitignore",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA==",
-              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAF8SURBVDhPjVNLTgJBEG1lwpoFB3GNK9fieA48hD8iwT/ihwgSDAIHgAGXXsEV18CNzL/LquqZdsYM6kteXqcy3fWqpmpNRBgOhyABBEgpAFVKPIMUcYzUyOU\u002BXM/b2qtU3vkSfRjjZTCAMAw1A2LwzdFoBPP5HNqdzuL27n4juibWI\u002BUshBA1DIkhEx9iEorFotgslQqGYbxxAGFEqt1MxmPWJLbLZdZ\u002Bv89q5PMFPiTR6z2zdaxR0fXA0XTBcVywkb4fwHXjRteecIDNQ7UmExVYAdPcxYaqclN46na5WenMKjtlVnTYwcXlVYaDqImW9beD5N/TeGy32QHXm6hZ03ZgiSQHp2fnWQ4oBmJqWSqwAqZpZjt4aLXAD4J0VqyZsmoubfB8H2r1eoaD6NXZ9HcHO\u002BSA3f4AjifXl8rItOETM8ckB9WTWpYD9RdeZ1PWVWAHWXPQaDb59f/w8LiqHeh1pvGkCaP6qB8yXusoxmuNZ7XmII4O9vGuEF86osuDYRkpYQAAAABJRU5ErkJggg==",
-              "WhenOpened": "2025-11-26T12:38:46.047Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "InstructorsController.cs",
               "DocumentMoniker": "C:\\Simeon\\Coding\\Coursera-API-Example\\Coursera_Exercise\\Controllers\\InstructorsController.cs",
               "RelativeDocumentMoniker": "Controllers\\InstructorsController.cs",
@@ -113,7 +113,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Instructor.cs",
               "DocumentMoniker": "C:\\Simeon\\Coding\\Coursera-API-Example\\Coursera_Exercise\\Models\\Instructor.cs",
               "RelativeDocumentMoniker": "Models\\Instructor.cs",
@@ -142,9 +142,9 @@
               "Title": "Coursera_Exercise.http",
               "DocumentMoniker": "C:\\Simeon\\Coding\\Coursera-API-Example\\Coursera_Exercise\\Coursera_Exercise.http",
               "RelativeDocumentMoniker": "Coursera_Exercise.http",
-              "ToolTip": "C:\\Simeon\\Coding\\Coursera-API-Example\\Coursera_Exercise\\Coursera_Exercise.http*",
-              "RelativeToolTip": "Coursera_Exercise.http*",
-              "ViewState": "AgIAADoAAAAAAAAAAADwv00AAAAFAAAAAAAAAA==",
+              "ToolTip": "C:\\Simeon\\Coding\\Coursera-API-Example\\Coursera_Exercise\\Coursera_Exercise.http",
+              "RelativeToolTip": "Coursera_Exercise.http",
+              "ViewState": "AgIAACwAAAAAAAAAAAAswEwAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
               "WhenOpened": "2025-11-26T09:12:15.976Z",
               "EditorCaption": ""
