@@ -25,7 +25,7 @@ namespace Coursera_Exercise.Controllers
         }
 
         [HttpGet("{pin}")]
-        public ActionResult<Student> GetStudent(int pin)
+        public ActionResult<Student> GetStudentById(int pin)
         {
             Student? student = students.FirstOrDefault(s => s.PIN == pin);
             if(student == null)
@@ -43,7 +43,7 @@ namespace Coursera_Exercise.Controllers
                 return Conflict();
 
             students.Add(newStudent);
-            return CreatedAtAction(nameof(GetStudent), new { pin=newStudent.PIN }, newStudent);
+            return CreatedAtAction(nameof(GetStudentById), new { pin=newStudent.PIN }, newStudent);
         }
 
         [HttpPut("{pin}")]

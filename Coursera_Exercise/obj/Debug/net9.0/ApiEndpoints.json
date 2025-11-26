@@ -20,6 +20,58 @@
     ]
   },
   {
+    "ContainingType": "Coursera_Exercise.Controllers.InstructorsController",
+    "Method": "CreateInstructor",
+    "RelativePath": "api/Instructors",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "newInstructor",
+        "Type": "Coursera_Exercise.Models.Instructor",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Coursera_Exercise.Models.Instructor",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Coursera_Exercise.Controllers.InstructorsController",
+    "Method": "GetInstructorByID",
+    "RelativePath": "api/Instructors/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Coursera_Exercise.Models.Instructor",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "Coursera_Exercise.Controllers.StudentsController",
     "Method": "GetStudents",
     "RelativePath": "api/Students",
@@ -67,7 +119,7 @@
   },
   {
     "ContainingType": "Coursera_Exercise.Controllers.StudentsController",
-    "Method": "GetStudent",
+    "Method": "GetStudentById",
     "RelativePath": "api/Students/{pin}",
     "HttpMethod": "GET",
     "IsController": true,

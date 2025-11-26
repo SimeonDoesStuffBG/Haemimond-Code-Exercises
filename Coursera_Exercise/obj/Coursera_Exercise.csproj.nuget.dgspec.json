@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Simeon\\Coding\\Coursera_Exercise\\Coursera_Exercise.csproj": {}
+    "C:\\Simeon\\Coding\\Coursera-API-Example\\Coursera_Exercise\\Coursera_Exercise.csproj": {}
   },
   "projects": {
-    "C:\\Simeon\\Coding\\Coursera_Exercise\\Coursera_Exercise.csproj": {
+    "C:\\Simeon\\Coding\\Coursera-API-Example\\Coursera_Exercise\\Coursera_Exercise.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Simeon\\Coding\\Coursera_Exercise\\Coursera_Exercise.csproj",
+        "projectUniqueName": "C:\\Simeon\\Coding\\Coursera-API-Example\\Coursera_Exercise\\Coursera_Exercise.csproj",
         "projectName": "Coursera_Exercise",
-        "projectPath": "C:\\Simeon\\Coding\\Coursera_Exercise\\Coursera_Exercise.csproj",
+        "projectPath": "C:\\Simeon\\Coding\\Coursera-API-Example\\Coursera_Exercise\\Coursera_Exercise.csproj",
         "packagesPath": "C:\\Users\\smilev\\.nuget\\packages\\",
-        "outputPath": "C:\\Simeon\\Coding\\Coursera_Exercise\\obj\\",
+        "outputPath": "C:\\Simeon\\Coding\\Coursera-API-Example\\Coursera_Exercise\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
