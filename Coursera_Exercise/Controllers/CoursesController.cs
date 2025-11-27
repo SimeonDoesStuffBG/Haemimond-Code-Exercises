@@ -1,4 +1,5 @@
 ﻿using Coursera_Exercise.Data;
+using Coursera_Exercise.DB_Views;
 using Coursera_Exercise.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -83,6 +84,25 @@ namespace Coursera_Exercise.Controllers
 
             Courses.Remove(course);
             await _context.SaveChangesAsync();
+            return NoContent();
+        }
+
+        [HttpGet("report")]
+        public async Task<IActionResult> GetReport()
+        {
+            List<StudentCredit> studentCredits = await _context.StudentCredits.ToListAsync();
+            foreach (StudentCredit student in studentCredits)
+            {
+                List<CourseDetails> courseDetails = await _context.CourseDetails
+                    .FromSql(@$"GetCourseDetails @StudentPIN = {student.Student_PIN}")
+                    .ToListAsync();
+
+                Console.WriteLine($"{student.Student_Name}, {student.Total_Credit}");
+                foreach (CourseDetails details in courseDetails)
+                {
+                    Console.WriteLine($"    {details.Course_name}, {details.Total_time}, {details.Credit}, {details.Instructor_name}");
+                }
+            }
             return NoContent();
         }
     }

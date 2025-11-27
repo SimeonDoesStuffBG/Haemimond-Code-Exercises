@@ -16,6 +16,11 @@ Accept: application/json
 
 ###
 
+PUT {{HostAddress}}/api/students/mnet56sda7/course/2
+Accept: application/json
+
+###
+
 POST {{HostAddress}}/api/students
 Content-type: application/json
 {
@@ -108,4 +113,9 @@ Content-type: application/json
 ###
 
 DELETE {{HostAddress}}/api/courses/6
+Accept: application/json
+
+###
+
+GET {{HostAddress}}/api/courses/report
 Accept: application/json

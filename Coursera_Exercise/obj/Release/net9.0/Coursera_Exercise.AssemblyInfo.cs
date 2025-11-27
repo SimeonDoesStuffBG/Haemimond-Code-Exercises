@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Coursera_Exercise")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b86154a0f8264ff45e990470831e3b736ad9feb8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1da233e6379247cb0fcc7b5d6d64c36a7c6006c6")]
 [assembly: System.Reflection.AssemblyProductAttribute("Coursera_Exercise")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Coursera_Exercise")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
