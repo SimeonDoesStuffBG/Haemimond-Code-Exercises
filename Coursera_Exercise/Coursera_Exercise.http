@@ -49,7 +49,6 @@ Accept: application/json
 POST {{HostAddress}}/api/instructors
 Content-type: application/json
 {
-  "Id": 6,
   "First_name": "Jesus",
   "Last_name": "Christ"
 }
@@ -66,7 +65,7 @@ Content-Type: application/json
 
 ###
 
-DELETE {{HostAddress}}/api/instructors/5
+DELETE {{HostAddress}}/api/instructors/6
 Accept: application/json
 
 ###

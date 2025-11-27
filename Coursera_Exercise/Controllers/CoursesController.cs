@@ -1,6 +1,9 @@
-﻿using Coursera_Exercise.Models;
+﻿using Coursera_Exercise.Data;
+using Coursera_Exercise.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace Coursera_Exercise.Controllers
 {
@@ -8,21 +11,23 @@ namespace Coursera_Exercise.Controllers
     [ApiController]
     public class CoursesController : ControllerBase
     {
-        private static List<Course> courses = new List<Course>
+        private readonly CourseraExerciseContext _context;
+
+        public CoursesController(CourseraExerciseContext context)
         {
-            
-        };
+            _context = context;
+        }
 
         [HttpGet]
-        public ActionResult<List<Course>> GetCourses()
+        public async Task<ActionResult<List<Course>>> GetCourses()
         {
-            return Ok(courses);
+            return Ok(await _context.Courses.ToListAsync());
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Course> GetCourseByID(int id)
+        public async Task<ActionResult<Course>> GetCourseByID(int id)
         {
-            Course? course = courses.FirstOrDefault(c => c.Id == id);
+            Course? course = await _context.Courses.FindAsync(id);
             if(course == null)
             {
                 return NotFound();
@@ -32,52 +37,51 @@ namespace Coursera_Exercise.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Course> CreateCourse(Course newCourse)
+        public async Task<ActionResult<Course>> CreateCourse(Course newCourse)
         {
             if(newCourse == null)
             {
                 return NotFound();
             }
-            if(courses.FirstOrDefault(c=>c.Id == newCourse.Id)!=null)
-            {
-                return Conflict();
-            }
 
-            courses.Add(newCourse);
+            _context.Courses.Add(newCourse);
+            await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetCourseByID), new { id = newCourse.Id }, newCourse);
         }
 
         [HttpPut("{id}")]
-        public IActionResult EditCourse(int id, Course editedCourse)
+        public async Task<IActionResult> EditCourse(int id, Course editedCourse)
         {
-            Course? course = courses.FirstOrDefault(c => c.Id == id);
-            if(course == null)
+            Course? course = await _context.Courses.FindAsync(id);
+            if (course == null)
             {
                 return NotFound();
             }
-            if(courses.FirstOrDefault(c=>c.Id== editedCourse.Id)!=null && editedCourse.Id != course.Id)
+            Course? otherCourse = await _context.Courses.FindAsync(id);
+            if (otherCourse!=null && editedCourse.Id != course.Id)
             {
                 return Conflict();
             }
 
-            course.Id = editedCourse.Id;
             course.Name = editedCourse.Name;
             course.Instructor_id = editedCourse.Instructor_id;
             course.Total_time = editedCourse.Total_time;
             course.Credit = editedCourse.Credit;
+            await _context.SaveChangesAsync();
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteCourse(int id)
+        public async Task<IActionResult> DeleteCourse(int id)
         {
-            Course? course = courses.FirstOrDefault(c => c.Id == id);
+            Course? course = await _context.Courses.FindAsync(id);
             if (course == null)
             {
                 return NotFound();
             }
 
-            courses.Remove(course);
+            _context.Courses.Remove(course);
+            await _context.SaveChangesAsync();
             return NoContent();
         }
     }
