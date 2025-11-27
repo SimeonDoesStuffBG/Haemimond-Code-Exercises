@@ -11,6 +11,11 @@ Accept: application/json
 
 ###
 
+POST {{HostAddress}}/api/students/sdgr34Pwn6/course/1
+Accept: application/json
+
+###
+
 POST {{HostAddress}}/api/students
 Content-type: application/json
 {

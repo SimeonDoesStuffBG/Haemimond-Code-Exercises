@@ -21,7 +21,7 @@ namespace Coursera_Exercise.Controllers
 
         [HttpGet]
         public async Task<ActionResult<List<Student>>> GetStudents()
-        { 
+        {
             return Ok(await Students.ToListAsync());
         }
 
@@ -45,21 +45,21 @@ namespace Coursera_Exercise.Controllers
                 return BadRequest();
             }
             Student? existingStudent = await Students.FindAsync(newStudent.PIN);
-            if ( existingStudent != null)
+            if (existingStudent != null)
             {
                 return Conflict();
             }
 
             Students.Add(newStudent);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetStudentByPIN), new { pin=newStudent.PIN }, newStudent);
+            return CreatedAtAction(nameof(GetStudentByPIN), new { pin = newStudent.PIN }, newStudent);
         }
 
         [HttpPut("{pin}")]
         public async Task<IActionResult> UpdateStudent(string pin, Student editedStudent)
         {
             Student? student = await Students.FindAsync(pin);
-            if(student == null)
+            if (student == null)
             {
                 return NotFound();
             }
@@ -68,7 +68,7 @@ namespace Coursera_Exercise.Controllers
             {
                 return Conflict();
             }
-            
+
             student.First_name = editedStudent.First_name;
             student.Last_name = editedStudent.Last_name;
             student.Time_created = editedStudent.Time_created;
@@ -86,6 +86,64 @@ namespace Coursera_Exercise.Controllers
             }
 
             Students.Remove(student);
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+
+        [HttpPost("{pin}/course/{id}")]
+        public async Task<ActionResult<StudentCourse>> EnrollInCourse(string pin, int id)
+        {
+            Student? student = await Students.FindAsync(pin);
+            Course? course = await _context.Courses.FindAsync(id);
+            if (student == null || course == null)
+            {
+                return BadRequest();
+            }
+            StudentCourse? existingCourse = await _context.StudentsCourse.FindAsync(pin, id);
+            if (existingCourse != null)
+            {
+                return Conflict();
+            }
+            StudentCourse studentCourse = new StudentCourse { Student_pin = pin, Course_id = id };
+            _context.StudentsCourse.Add(studentCourse);
+            await _context.SaveChangesAsync();
+
+            return Created();
+        }
+
+        [HttpPut("{pin}/course/{id}")]
+        public async Task<IActionResult> FinishCourse(string pin, int id)
+        {
+            StudentCourse? studentCourse = await _context.StudentsCourse.FindAsync(pin, id);
+            if (studentCourse == null)
+            {
+                return NotFound();
+            }
+            if (studentCourse.Completion_Date != null)
+            {
+                return Conflict();
+            }
+
+            studentCourse.Completion_Date = DateOnly.FromDateTime(DateTime.Now);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        [HttpDelete("{pin}/course/{id}")]
+        public async Task<IActionResult> AbandonCourse(string pin, int id)
+        {
+            StudentCourse? studentCourse = await _context.StudentsCourse.FindAsync(pin, id);
+            if (studentCourse == null)
+            {
+                return NotFound();
+            }
+            if (studentCourse.Completion_Date != null)
+            {
+                return Conflict();
+            }
+
+            _context.StudentsCourse.Remove(studentCourse);
             await _context.SaveChangesAsync();
             return NoContent();
         }

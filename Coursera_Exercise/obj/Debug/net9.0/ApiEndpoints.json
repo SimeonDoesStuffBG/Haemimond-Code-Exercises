@@ -118,7 +118,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[Coursera_Exercise.DB_Views.CourseDetail, Coursera_Exercise, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[Coursera_Exercise.Models.Instructor, Coursera_Exercise, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -325,5 +325,36 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Coursera_Exercise.Controllers.StudentsController",
+    "Method": "EnrollInCourse",
+    "RelativePath": "api/Students/{pin}/course/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pin",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Coursera_Exercise.Models.StudentCourse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]
