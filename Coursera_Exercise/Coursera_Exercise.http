@@ -1,28 +1,33 @@
 @HostAddress = https://localhost:7000
-
+@Auth = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaW1lb25nbWlsZXY0MzIiLCJqdGkiOiI5Yjg2M2VlMi02NDFjLTQxNDUtODYxNi1hOTRmMDE5ZDNiODkiLCJleHAiOjE3NjQzMzU1NjcsImlzcyI6ImxvY2FsaG9zdDo3MDAwIiwiYXVkIjoibG9jYWxob3N0OjcwMDAifQ.oInXSpUpM6R7JlfazwG0TEMWDAE4yBPbLw-4Vt3eLEo
 
 GET {{HostAddress}}/api/students
 Accept: application/json
+Authorization: {{Auth}}
 
 ###
 
 GET {{HostAddress}}/api/students/hjPe23Lmn4
 Accept: application/json
+Authorization: {{Auth}}
 
 ###
 
 POST {{HostAddress}}/api/students/sdgr34Pwn6/course/1
 Accept: application/json
+Authorization: {{Auth}}
 
 ###
 
 PUT {{HostAddress}}/api/students/mnet56sda7/course/2
 Accept: application/json
+Authorization: {{Auth}}
 
 ###
 
 POST {{HostAddress}}/api/students
 Content-type: application/json
+Authorization: {{Auth}}
 {
   "PIN": "sdgr34Pwn6",
   "First_name":"Toph",
@@ -33,6 +38,7 @@ Content-type: application/json
 
 PUT {{HostAddress}}/api/students/oopq34dda5
 Content-type: application/json
+Authorization: {{Auth}}
 {
   "PIN":"oopq34dda5",
   "First_Name":"Duncan",
@@ -43,21 +49,25 @@ Content-type: application/json
 
 DELETE {{HostAddress}}/api/students/oopq34dda5
 Accept: application/json
+Authorization: {{Auth}}
 
 ###
 
 GET {{HostAddress}}/api/instructors
 Accept: application/json
+Authorization: {{Auth}}
 
 ###
 
 GET {{HostAddress}}/api/instructors/2
 Accept: application/json
+Authorization: {{Auth}}
 
 ###
 
 POST {{HostAddress}}/api/instructors
 Content-type: application/json
+Authorization: {{Auth}}
 {
   "First_name": "Jesus",
   "Last_name": "Christ"
@@ -67,6 +77,7 @@ Content-type: application/json
 
 PUT {{HostAddress}}/api/instructors/4
 Content-Type: application/json
+Authorization: {{Auth}}
 {
   "Id":6,
   "First_name": "Michael",
@@ -75,8 +86,9 @@ Content-Type: application/json
 
 ###
 
-DELETE {{HostAddress}}/api/instructors/6
+DELETE {{HostAddress}}/api/instructors/7
 Accept: application/json
+Authorization: {{Auth}}
 
 ###
 
@@ -91,6 +103,7 @@ Accept: application/json
 ###
 POST {{HostAddress}}/api/courses
 Content-Type: application/json
+Authorization: {{Auth}}
 {
   "Id": 6,
   "name": "Spice",
@@ -102,6 +115,7 @@ Content-Type: application/json
 ###
 PUT {{HostAddress}}/api/courses/3
 Content-type: application/json
+Authorization: {{Auth}}
 {
   "Id": 3,
   "Name": "Mssdasaw",
@@ -114,8 +128,30 @@ Content-type: application/json
 
 DELETE {{HostAddress}}/api/courses/6
 Accept: application/json
+Authorization: {{Auth}}
 
 ###
 
-GET {{HostAddress}}/api/courses/report?students=hjPe23Lmn4,mnet56sda7
+GET {{HostAddress}}/api/courses/report?students=hjPe23Lmn4&students=mnet56sda7&minCredit=10
 Accept: application/json
+Authorization: {{Auth}}
+
+###
+
+POST {{HostAddress}}/api/users/register
+Content-Type: application/json
+{
+  "Username":"simeongmilev432",
+  "Password":"123456",
+  "Email":"simeongmilev432@gmail.com"
+}
+
+###
+
+POST {{HostAddress}}/api/users/login
+Content-Type: application/json
+{
+  "Username":"simeongmilev432",
+  "Password":"123456",
+  "email":""
+}

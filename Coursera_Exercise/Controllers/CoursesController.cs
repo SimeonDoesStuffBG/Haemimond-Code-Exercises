@@ -1,6 +1,7 @@
 ﻿using Coursera_Exercise.Data;
 using Coursera_Exercise.DB_Views;
 using Coursera_Exercise.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -23,6 +24,7 @@ namespace Coursera_Exercise.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<List<Course>>> GetCourses()
         {
             return Ok(await Courses.ToListAsync());
@@ -41,6 +43,7 @@ namespace Coursera_Exercise.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Course>> CreateCourse(Course newCourse)
         {
             if(newCourse == null)
@@ -54,6 +57,7 @@ namespace Coursera_Exercise.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> EditCourse(int id, Course editedCourse)
         {
             Course? course = await Courses.FindAsync(id);
@@ -76,6 +80,7 @@ namespace Coursera_Exercise.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteCourse(int id)
         {
             Course? course = await Courses.FindAsync(id);
@@ -90,11 +95,12 @@ namespace Coursera_Exercise.Controllers
         }
 
         [HttpGet("report")]
+        [Authorize]
         public async Task<IActionResult> GetReport([FromQuery] string[] students, int minCredit = -1)
         {
             List<StudentCredit> studentCredits = await _context.StudentCredits
                 .Where(credit=>credit.Total_Credit>=minCredit 
-                            && (students.IsNullOrEmpty() || students.Contains(credit.Student_PIN))
+                            && (students.Length==0 || students.Contains(credit.Student_PIN))
                             )
                 .ToListAsync();
 

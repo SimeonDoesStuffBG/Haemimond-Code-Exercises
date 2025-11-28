@@ -1,5 +1,6 @@
 ﻿using Coursera_Exercise.Data;
 using Coursera_Exercise.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,12 +21,14 @@ namespace Coursera_Exercise.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<List<Student>>> GetStudents()
         {
             return Ok(await Students.ToListAsync());
         }
 
         [HttpGet("{pin}")]
+        [Authorize]
         public async Task<ActionResult<Student>> GetStudentByPIN(string pin)
         {
             Student? student = await Students.FindAsync(pin);
@@ -38,6 +41,7 @@ namespace Coursera_Exercise.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Student>> CreateStudent(Student newStudent)
         {
             if (newStudent == null)
@@ -56,6 +60,7 @@ namespace Coursera_Exercise.Controllers
         }
 
         [HttpPut("{pin}")]
+        [Authorize]
         public async Task<IActionResult> UpdateStudent(string pin, Student editedStudent)
         {
             Student? student = await Students.FindAsync(pin);
@@ -77,6 +82,7 @@ namespace Coursera_Exercise.Controllers
         }
 
         [HttpDelete("{pin}")]
+        [Authorize]
         public async Task<IActionResult> DeleteStudent(string pin)
         {
             Student? student = await Students.FindAsync(pin);
@@ -112,6 +118,7 @@ namespace Coursera_Exercise.Controllers
         }
 
         [HttpPut("{pin}/course/{id}")]
+        [Authorize]
         public async Task<IActionResult> FinishCourse(string pin, int id)
         {
             StudentCourse? studentCourse = await _context.StudentsCourse.FindAsync(pin, id);
@@ -131,6 +138,7 @@ namespace Coursera_Exercise.Controllers
         }
 
         [HttpDelete("{pin}/course/{id}")]
+        [Authorize]
         public async Task<IActionResult> AbandonCourse(string pin, int id)
         {
             StudentCourse? studentCourse = await _context.StudentsCourse.FindAsync(pin, id);

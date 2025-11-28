@@ -1,5 +1,8 @@
-﻿namespace Coursera_Exercise.Models
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace Coursera_Exercise.Models
 {
+    [Index(nameof(First_name), nameof(Last_name), IsUnique=true)]
     public class Instructor
     {
         public int Id { get; set; }

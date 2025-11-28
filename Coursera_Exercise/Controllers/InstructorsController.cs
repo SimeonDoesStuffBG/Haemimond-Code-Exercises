@@ -1,5 +1,6 @@
 ﻿using Coursera_Exercise.Data;
 using Coursera_Exercise.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,12 +21,14 @@ namespace Coursera_Exercise.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<List<Instructor>>> GetInstructors()
         {
             return Ok(await Instructors.ToListAsync());
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<Instructor>> GetInstructorByID (int id)
         {
             Instructor? instructor = await Instructors.FindAsync(id);
@@ -49,6 +52,7 @@ namespace Coursera_Exercise.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> EditInstructor(int id, Instructor editedInstructor)
         {
             Instructor? instructor = await Instructors.FindAsync(id);
@@ -64,6 +68,7 @@ namespace Coursera_Exercise.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteInstructor(int id)
         {
             Instructor? instructor = await Instructors.FindAsync(id);

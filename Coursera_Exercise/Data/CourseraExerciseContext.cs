@@ -11,7 +11,8 @@ namespace Coursera_Exercise.Data
         public DbSet<Instructor> Instructors { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<StudentCourse> StudentsCourse { get; set; }
-        
+        public DbSet<User> Users { get; set; }
+
         public DbSet<StudentCredit> StudentCredits { get; set; }
         public DbSet<CourseDetails> CourseDetails { get; set; }
 

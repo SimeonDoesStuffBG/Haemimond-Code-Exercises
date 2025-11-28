@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Coursera_Exercise.Models
 {
     [PrimaryKey(nameof(PIN))]
+    [Index(nameof(First_name), nameof(Last_name), IsUnique =true)]
     public class Student
     {
         [DataType("nchar(10)")]
