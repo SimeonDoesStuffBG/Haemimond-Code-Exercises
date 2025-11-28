@@ -8,9 +8,9 @@ namespace Coursera_Exercise.Models
     public class Student
     {
         [DataType("nchar(10)")]
-        public string PIN { get; set; }
-        public string First_name { get; set; }
-        public string Last_name { get; set; }
+        public required string PIN { get; set; }
+        public required string First_name { get; set; }
+        public required string Last_name { get; set; }
         public DateTime Time_created { get; set; } = DateTime.Now;
     }
 }

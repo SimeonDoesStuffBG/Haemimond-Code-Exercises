@@ -109,27 +109,6 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Coursera_Exercise.Controllers.CoursesController",
-    "Method": "GetReport",
-    "RelativePath": "api/Courses/report",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "students",
-        "Type": "System.String[]",
-        "IsRequired": false
-      },
-      {
-        "Name": "minCredit",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "Coursera_Exercise.Controllers.InstructorsController",
     "Method": "GetInstructors",
     "RelativePath": "api/Instructors",
@@ -233,6 +212,22 @@
       {
         "Name": "id",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Coursera_Exercise.Controllers.ReportsController",
+    "Method": "GetReport",
+    "RelativePath": "api/Reports",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "reportParameters",
+        "Type": "Coursera_Exercise.Models.ReportParameters",
         "IsRequired": true
       }
     ],

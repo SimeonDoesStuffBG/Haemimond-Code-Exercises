@@ -93,34 +93,5 @@ namespace Coursera_Exercise.Controllers
             await _context.SaveChangesAsync();
             return NoContent();
         }
-
-        [HttpGet("report")]
-        [Authorize]
-        public async Task<IActionResult> GetReport([FromQuery] string[] students, int minCredit = -1)
-        {
-            List<StudentCredit> studentCredits = await _context.StudentCredits
-                .Where(credit=>credit.Total_Credit>=minCredit 
-                            && (students.Length==0 || students.Contains(credit.Student_PIN))
-                            )
-                .ToListAsync();
-
-            List<KeyValuePair<StudentCredit, List<CourseDetails>>> report = new List<KeyValuePair<StudentCredit, List<CourseDetails>>>();
-            foreach (StudentCredit student in studentCredits)
-            {
-                List<CourseDetails> courseDetails = await _context.CourseDetails
-                    .FromSql(@$"GetCourseDetails @StudentPIN = {student.Student_PIN}")
-                    .ToListAsync();
-
-                report.Add(new KeyValuePair<StudentCredit, List<CourseDetails>>(student, courseDetails));
-                Console.WriteLine($"{student.Student_Name}, {student.Total_Credit}");
-                foreach (CourseDetails details in courseDetails)
-                {
-                    Console.WriteLine($"    {details.Course_name}, {details.Total_time}, {details.Credit}, {details.Instructor_name}");
-                }
-            }
-
-            Console.WriteLine($"minCredits = {string.Join(", ", students)}");
-            return Ok(report);
-        }
     }
 }

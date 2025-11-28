@@ -1,5 +1,5 @@
 @HostAddress = https://localhost:7000
-@Auth = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaW1lb25nbWlsZXY0MzIiLCJqdGkiOiI5Yjg2M2VlMi02NDFjLTQxNDUtODYxNi1hOTRmMDE5ZDNiODkiLCJleHAiOjE3NjQzMzU1NjcsImlzcyI6ImxvY2FsaG9zdDo3MDAwIiwiYXVkIjoibG9jYWxob3N0OjcwMDAifQ.oInXSpUpM6R7JlfazwG0TEMWDAE4yBPbLw-4Vt3eLEo
+@Auth = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaW1lb25nbWlsZXY0MzIiLCJqdGkiOiIxY2ZkYTdhNC1kOTVmLTQzZWMtYWQ3ZC0xZTNmNzhkYWRlMWQiLCJleHAiOjE3NjQzMzgxNjUsImlzcyI6ImxvY2FsaG9zdDo3MDAwIiwiYXVkIjoibG9jYWxob3N0OjcwMDAifQ.ifz_oP4v-O0vcDBiEIwKDWyE4YBgx1cGIWZAtb_c-UQ
 
 GET {{HostAddress}}/api/students
 Accept: application/json
@@ -132,10 +132,15 @@ Authorization: {{Auth}}
 
 ###
 
-GET {{HostAddress}}/api/courses/report?students=hjPe23Lmn4&students=mnet56sda7&minCredit=10
-Accept: application/json
+GET {{HostAddress}}/api/reports
+Content-Type: application/json
 Authorization: {{Auth}}
-
+{
+  "MinCredit": 10,
+  "Students": ["hjPe23Lmn4","mnet56sda7"],
+  "StartDate": "2023-12-03",
+  "EndDate": "2026-01-01"
+}
 ###
 
 POST {{HostAddress}}/api/users/register

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Coursera_Exercise.Migrations
 {
     [DbContext(typeof(CourseraExerciseContext))]
-    [Migration("20251127120134_Create Stored Procedures")]
-    partial class CreateStoredProcedures
+    [Migration("20251128131814_CreateSP")]
+    partial class CreateSP
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,15 +34,15 @@ namespace Coursera_Exercise.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Credit")
-                        .HasColumnType("int");
+                    b.Property<short>("Credit")
+                        .HasColumnType("smallint");
 
                     b.Property<string>("Instructor_name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Total_time")
-                        .HasColumnType("int");
+                    b.Property<short>("Total_time")
+                        .HasColumnType("smallint");
 
                     b.ToTable((string)null);
 
@@ -52,6 +52,10 @@ namespace Coursera_Exercise.Migrations
             modelBuilder.Entity("Coursera_Exercise.DB_Views.StudentCredit", b =>
                 {
                     b.Property<string>("Student_Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Student_PIN")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -151,16 +155,19 @@ namespace Coursera_Exercise.Migrations
 
                     b.Property<string>("First_name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Last_name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("Time_created")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("First_name", "Last_name")
+                        .IsUnique();
 
                     b.ToTable("Instructors");
 
@@ -209,16 +216,19 @@ namespace Coursera_Exercise.Migrations
 
                     b.Property<string>("First_name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Last_name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("Time_created")
                         .HasColumnType("datetime2");
 
                     b.HasKey("PIN");
+
+                    b.HasIndex("First_name", "Last_name")
+                        .IsUnique();
 
                     b.ToTable("Students");
 
@@ -358,6 +368,37 @@ namespace Coursera_Exercise.Migrations
                             Student_pin = "mnet56sda7",
                             Course_id = 1
                         });
+                });
+
+            modelBuilder.Entity("Coursera_Exercise.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("Username")
+                        .IsUnique();
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Coursera_Exercise.Models.Course", b =>
