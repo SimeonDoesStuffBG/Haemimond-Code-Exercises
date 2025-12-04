@@ -1,6 +1,41 @@
-@Technical_Request_HostAddress = http://localhost:5119
+@Technical_Request_HostAddress = https://localhost:7132
+@HostAddress = http://localhost:5119
 
-GET {{Technical_Request_HostAddress}}/weatherforecast/
+GET {{HostAddress}}/api/blocks/
 Accept: application/json
 
 ###
+
+GET {{Technical_Request_HostAddress}}/api/blocks/3
+Accept: application/json
+
+###
+
+POST {{Technical_Request_HostAddress}}/api/blocks
+Content-Type: application/json
+
+{
+  "Id": 6,
+  "Name": "Lego",
+  "Code": "3352"
+}
+
+###
+
+PUT {{Technical_Request_HostAddress}}/api/blocks/4
+Content-Type: application/json
+
+{
+  "Id": 4,
+  "Name": "Globglobgabgalab",
+  "Code": "3372"
+}
+
+###
+
+
+DELETE {{Technical_Request_HostAddress}}/api/blocks/5
+
+###
+
+
