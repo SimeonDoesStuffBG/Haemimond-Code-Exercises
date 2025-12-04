@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Simeon\\Coding\\Haemimont_exercises\\Coursera_Exercise\\Coursera_Exercise.csproj": {}
+    "C:\\Simeon\\Coding\\Haemimont_exercises\\Technical_Request\\Technical_Request.csproj": {}
   },
   "projects": {
-    "C:\\Simeon\\Coding\\Haemimont_exercises\\Coursera_Exercise\\Coursera_Exercise.csproj": {
+    "C:\\Simeon\\Coding\\Haemimont_exercises\\Technical_Request\\Technical_Request.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Simeon\\Coding\\Haemimont_exercises\\Coursera_Exercise\\Coursera_Exercise.csproj",
-        "projectName": "Coursera_Exercise",
-        "projectPath": "C:\\Simeon\\Coding\\Haemimont_exercises\\Coursera_Exercise\\Coursera_Exercise.csproj",
+        "projectUniqueName": "C:\\Simeon\\Coding\\Haemimont_exercises\\Technical_Request\\Technical_Request.csproj",
+        "projectName": "Technical_Request",
+        "projectPath": "C:\\Simeon\\Coding\\Haemimont_exercises\\Technical_Request\\Technical_Request.csproj",
         "packagesPath": "C:\\Users\\smilev\\.nuget\\packages\\",
-        "outputPath": "C:\\Simeon\\Coding\\Haemimont_exercises\\Coursera_Exercise\\obj\\",
+        "outputPath": "C:\\Simeon\\Coding\\Haemimont_exercises\\Technical_Request\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -51,25 +51,7 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
-            "Microsoft.AspNetCore.Authentication.JwtBearer": {
-              "target": "Package",
-              "version": "[9.0.11, )"
-            },
             "Microsoft.AspNetCore.OpenApi": {
-              "target": "Package",
-              "version": "[9.0.11, )"
-            },
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[9.0.11, )"
-            },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[9.0.11, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
               "target": "Package",
               "version": "[9.0.11, )"
             }
