@@ -216,5 +216,114 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Technical_Request.Controllers.TechnicalServicesController",
+    "Method": "GetTechnicalServices",
+    "RelativePath": "api/TechnicalServices",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Technical_Request.Models.TechnicalService, Technical_Request, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Technical_Request.Controllers.TechnicalServicesController",
+    "Method": "CreateTechnicalService",
+    "RelativePath": "api/TechnicalServices",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "newTechnicalService",
+        "Type": "Technical_Request.Models.TechnicalService",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Technical_Request.Models.TechnicalService",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Technical_Request.Controllers.TechnicalServicesController",
+    "Method": "GetTechnicalServiceById",
+    "RelativePath": "api/TechnicalServices/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Technical_Request.Models.TechnicalService",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Technical_Request.Controllers.TechnicalServicesController",
+    "Method": "editTechnicalService",
+    "RelativePath": "api/TechnicalServices/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "editedTechnicalService",
+        "Type": "Technical_Request.Models.TechnicalService",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Technical_Request.Controllers.TechnicalServicesController",
+    "Method": "DeleteTechnicalService",
+    "RelativePath": "api/TechnicalServices/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]
