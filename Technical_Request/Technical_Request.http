@@ -113,3 +113,42 @@ Content-Type: application/json
 ###
 DELETE {{HostAddress}}/api/TechnicalServices/4
 Accept: application/json
+
+###
+
+GET {{HostAddress}}/api/employees
+Accept: application/json
+
+###
+
+GET {{HostAddress}}/api/employees/4
+Accept: application/json
+
+###
+
+POST {{HostAddress}}/api/employees
+Content-Type: application/json
+{
+  "Id": 6,
+  "FirstName":"Name",
+  "Surname":"Surname",
+  "LastName":"Family",
+  "PIN":"2245531235"
+}
+###
+
+PUT {{HostAddress}}/api/employees/3
+Content-Type: application/json
+{
+  "Id":3,
+  "FirstName":"Hans",
+  "Surname":"Christian",
+  "LastName":"Anderson",
+  "PIN":"33215523"
+}
+###
+
+DELETE {{HostAddress}}/api/employees/5
+Accept: application/json
+
+###
