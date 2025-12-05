@@ -14,7 +14,6 @@ POST {{HostAddress}}/api/blocks
 Content-Type: application/json
 
 {
-  "Id": 6,
   "Name": "Lego",
   "Code": "3352"
 }
@@ -33,7 +32,7 @@ Content-Type: application/json
 ###
 
 
-DELETE {{Technical_Request_HostAddress}}/api/blocks/5
+DELETE {{HostAddress}}/api/blocks/5
 
 ###
 

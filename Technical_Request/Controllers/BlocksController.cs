@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata.Ecma335;
+using Technical_Request.Data;
 using Technical_Request.Models;
 
 namespace Technical_Request.Controllers
@@ -9,21 +11,26 @@ namespace Technical_Request.Controllers
     [ApiController]
     public class BlocksController : ControllerBase
     {
-        private static List<Block> blocks = new List<Block>
+        private readonly TechnicalRequestContext context;
+        private DbSet<Block> Blocks{
+            get { return context.Blocks; }
+        }
+
+        public BlocksController(TechnicalRequestContext _context)
         {
-            
-        };
+            context = _context;
+        }
 
         [HttpGet]
-        public ActionResult<List<Block>> GetBlocks()
+        public async Task<ActionResult<List<Block>>> GetBlocks()
         {
-            return Ok(blocks);
+            return Ok(await Blocks.ToListAsync());
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Block> GetBlockByID(int id)
+        public async Task<ActionResult<Block>> GetBlockByID(int id)
         {
-            Block? block = blocks.FirstOrDefault(b => b.Id == id);
+            Block? block = await Blocks.FindAsync(id);
             if (block == null)
             {
                 return NotFound();
@@ -32,62 +39,64 @@ namespace Technical_Request.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Block> CreateBlock(Block newBlock)
+        public async Task<ActionResult<Block>> CreateBlock(Block newBlock)
         {
             if (newBlock == null)
             {
                 return BadRequest();
             }
 
-            Block? existingBlock = blocks.FirstOrDefault(b => b.Id == newBlock.Id || b.Code == newBlock.Code);
+            Block? existingBlock = await Blocks.FirstOrDefaultAsync(b=>b.Code == newBlock.Code);
             if (existingBlock != null)
             {
                 return Conflict();
             }
 
-            blocks.Add(newBlock);
+
+            Blocks.Add(newBlock);
+            await context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetBlockByID), new { id = newBlock.Id }, newBlock);
         }
 
         [HttpPut("{id}")]
-        public IActionResult EditBlock(int id, Block editedBlock)
+        public async Task<IActionResult> EditBlock(int id, Block editedBlock)
         {
             if (editedBlock == null)
             {
                 return BadRequest();
             }
-            Block? blockToEdit = blocks.FirstOrDefault(b => b.Id == id);
+            Block? blockToEdit = await Blocks.FindAsync(id);
             if (blockToEdit == null)
             {
                 return NotFound();
             }
-            Block? testBlock = blocks.FirstOrDefault(b => b.Id == editedBlock.Id);
+            Block? testBlock = await Blocks.FindAsync(editedBlock.Id);
             if (testBlock != null && blockToEdit.Id != testBlock.Id) 
             {
                 return Conflict();
             }
-            testBlock = blocks.FirstOrDefault(b => b.Code == editedBlock.Code);
+            testBlock = await Blocks.FirstOrDefaultAsync(b => b.Code == editedBlock.Code);
             if(testBlock != null && blockToEdit.Code != testBlock.Code)
             {
                 return Conflict();
             }
-            blockToEdit.Id = editedBlock.Id;
             blockToEdit.Name = editedBlock.Name;
             blockToEdit.Code = editedBlock.Code;
-
+            await context.SaveChangesAsync();
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteBlock(int id)
+        public async Task<IActionResult> DeleteBlock(int id)
         {
-            Block? blockToDelete = blocks.FirstOrDefault(b => b.Id == id);
+            Block? blockToDelete = await Blocks.FindAsync(id);
             if (blockToDelete == null)
             {
                 return NotFound();
             }
 
-            blocks.Remove(blockToDelete);
+            Blocks.Remove(blockToDelete);
+            await context.SaveChangesAsync();
             return NoContent();
         }
     }
