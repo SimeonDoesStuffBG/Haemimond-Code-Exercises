@@ -10,11 +10,7 @@ namespace Technical_Request.Controllers
     {
         private static List<TechnicalService> technicalServices = new List<TechnicalService>
         {
-            new TechnicalService {Id=1, Name="Service 1", Description="Desc", TimeOfCreation=DateTime.Now},
-            new TechnicalService {Id=2, Name="Service 2", Description="Descr", TimeOfCreation=DateTime.Now},
-            new TechnicalService {Id = 3, Name = "Service 3", Description = "Descri", TimeOfCreation = DateTime.Now},
-            new TechnicalService {Id = 4, Name = "Service 4", Description = "Descrip", TimeOfCreation = DateTime.Now},
-            new TechnicalService {Id = 5, Name = "Service 5", Description = "Descript", TimeOfCreation = DateTime.Now},
+            
         };
 
         [HttpGet]

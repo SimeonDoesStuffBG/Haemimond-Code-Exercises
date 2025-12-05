@@ -10,11 +10,7 @@ namespace Technical_Request.Controllers
     {
         private static List<Models.System> systems = new List<Models.System>
         {
-            new Models.System{ Id = 1, Name="System 1", Code="2245", Parent=null },
-            new Models.System{ Id = 2, Name="System 2", Code="2145", Parent=null },
-            new Models.System{ Id = 3, Name="System 3", Code="2945", Parent=1 },
-            new Models.System{ Id = 4, Name="System 4", Code="2545", Parent=null },
-            new Models.System{ Id = 5, Name="System 5", Code="3245", Parent=3 },
+           
         };
 
         [HttpGet]

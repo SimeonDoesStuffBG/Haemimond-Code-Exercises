@@ -11,11 +11,7 @@ namespace Technical_Request.Controllers
     {
         private static List<Block> blocks = new List<Block>
         {
-            new Block {Id=1, Name="Block-1", Code="2344"},
-            new Block {Id=2, Name="Block-2", Code="24312"},
-            new Block {Id=3, Name="Block-3", Code="2554"},
-            new Block {Id=4, Name="Block-4", Code="2332"},
-            new Block {Id=5, Name="Block-5", Code="2445"},
+            
         };
 
         [HttpGet]
