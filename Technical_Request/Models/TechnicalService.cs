@@ -1,13 +1,15 @@
-﻿namespace Technical_Request.Models
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+
+namespace Technical_Request.Models
 {
     public class TechnicalService
     {
         public int Id { get; set; }
+        [DataType("nvarchar(500)")]
         public string Name { get; set; }
+        [DataType("nvarchar(4000)")]
         public string Description { get; set; }
-        public int[]? Blocks { get; set; } = null!;
-        public int[]? Systems { get; set; } = null!;
-        public int[]? ResponsiblePersons { get; set; } = null!;
         public DateTime TimeOfCreation { get; set; }
     }
 }

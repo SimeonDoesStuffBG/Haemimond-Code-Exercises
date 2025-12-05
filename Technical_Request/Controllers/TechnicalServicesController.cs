@@ -10,11 +10,11 @@ namespace Technical_Request.Controllers
     {
         private static List<TechnicalService> technicalServices = new List<TechnicalService>
         {
-            new TechnicalService {Id=1, Name="Service 1", Description="Desc", Blocks=null, Systems=null, ResponsiblePersons=null, TimeOfCreation=DateTime.Now},
-            new TechnicalService {Id=2, Name="Service 2", Description="Descr", Blocks=[1,3], Systems=[4,3], ResponsiblePersons=[2,3], TimeOfCreation=DateTime.Now},
-            new TechnicalService {Id=3, Name="Service 3", Description="Descri", Blocks=null, Systems=null, ResponsiblePersons=null, TimeOfCreation=DateTime.Now},
-            new TechnicalService {Id=4, Name="Service 4", Description="Descrip", Blocks=null, Systems=null, ResponsiblePersons=null, TimeOfCreation=DateTime.Now},
-            new TechnicalService {Id=5, Name="Service 5", Description="Descript", Blocks=null, Systems=null, ResponsiblePersons=null, TimeOfCreation=DateTime.Now},
+            new TechnicalService {Id=1, Name="Service 1", Description="Desc", TimeOfCreation=DateTime.Now},
+            new TechnicalService {Id=2, Name="Service 2", Description="Descr", TimeOfCreation=DateTime.Now},
+            new TechnicalService {Id = 3, Name = "Service 3", Description = "Descri", TimeOfCreation = DateTime.Now},
+            new TechnicalService {Id = 4, Name = "Service 4", Description = "Descrip", TimeOfCreation = DateTime.Now},
+            new TechnicalService {Id = 5, Name = "Service 5", Description = "Descript", TimeOfCreation = DateTime.Now},
         };
 
         [HttpGet]
@@ -72,9 +72,6 @@ namespace Technical_Request.Controllers
             technicalServiceToEdit.Id = editedTechnicalService.Id;
             technicalServiceToEdit.Name = editedTechnicalService.Name;
             technicalServiceToEdit.Description = editedTechnicalService.Description;
-            technicalServiceToEdit.Blocks = editedTechnicalService.Blocks;
-            technicalServiceToEdit.Systems = editedTechnicalService.Systems;
-            technicalServiceToEdit.ResponsiblePersons = editedTechnicalService.ResponsiblePersons;
 
             return NoContent();
         }
