@@ -1,4 +1,3 @@
-@Technical_Request_HostAddress = https://localhost:7132
 @HostAddress = http://localhost:5119
 
 GET {{HostAddress}}/api/blocks/
@@ -6,12 +5,12 @@ Accept: application/json
 
 ###
 
-GET {{Technical_Request_HostAddress}}/api/blocks/3
+GET {{HostAddress}}/api/blocks/3
 Accept: application/json
 
 ###
 
-POST {{Technical_Request_HostAddress}}/api/blocks
+POST {{HostAddress}}/api/blocks
 Content-Type: application/json
 
 {
@@ -22,7 +21,7 @@ Content-Type: application/json
 
 ###
 
-PUT {{Technical_Request_HostAddress}}/api/blocks/4
+PUT {{HostAddress}}/api/blocks/4
 Content-Type: application/json
 
 {
@@ -39,3 +38,39 @@ DELETE {{Technical_Request_HostAddress}}/api/blocks/5
 ###
 
 
+
+POST {{HostAddress}}/api/systems
+Content-Type: application/json
+
+{
+  "Id" : 7,
+  "Name":"System 6",
+  "Code":"4573",
+  "Parent" : 7
+}
+
+###
+
+GET {{HostAddress}}/api/systems
+
+###
+
+DELETE {{HostAddress}}/api/systems/4
+
+###
+
+GET {{HostAddress}}/api/systems/3
+
+###
+
+PUT {{HostAddress}}/api/systems/1
+Content-Type: application/json
+
+{
+  "Id":1,
+  "Name":"dfhndskfhlas",
+  "Code":"332",
+  "Parent":5
+}
+
+###
