@@ -42,9 +42,9 @@ POST {{HostAddress}}/api/systems
 Content-Type: application/json
 
 {
-  "Name":"System 6",
-  "Code":"4573",
-  "Parent" : 3
+  "Name":"System 7",
+  "Code":"2342",
+  "Parent" : 6
 }
 
 ###
@@ -165,7 +165,7 @@ Accept: application/json
 ###
 
   
-POST {{HostAddress}}/api/technicalServices/1/systems/2
+POST {{HostAddress}}/api/technicalServices/3/systems/1
 Accept: application/json
 
 ###
@@ -184,3 +184,5 @@ DELETE {{HostAddress}}/api/technicalServices/3/ResponsiblePersons/creation
 Accept: application/json
 
 ###
+
+GET {{HostAddress}}/api/report/2

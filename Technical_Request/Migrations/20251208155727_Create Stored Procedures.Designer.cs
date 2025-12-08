@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Technical_Request.Data;
 
@@ -11,9 +12,11 @@ using Technical_Request.Data;
 namespace Technical_Request.Migrations
 {
     [DbContext(typeof(TechnicalRequestContext))]
-    partial class TechnicalRequestContextModelSnapshot : ModelSnapshot
+    [Migration("20251208155727_Create Stored Procedures")]
+    partial class CreateStoredProcedures
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -161,24 +164,6 @@ namespace Technical_Request.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Technical_Request.Models.EmployeeView", b =>
-                {
-                    b.Property<string>("Activity")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ServiceId")
-                        .HasColumnType("int");
-
-                    b.ToTable((string)null);
-
-                    b.ToView("ResponsiblePersonActivities", (string)null);
-                });
-
             modelBuilder.Entity("Technical_Request.Models.ResponsiblePerson", b =>
                 {
                     b.Property<int>("ServiceId")
@@ -314,35 +299,35 @@ namespace Technical_Request.Migrations
                             Id = 1,
                             Description = "Desc",
                             Name = "Service 1",
-                            TimeOfCreation = new DateTime(2025, 12, 9, 8, 52, 2, 413, DateTimeKind.Local).AddTicks(2220)
+                            TimeOfCreation = new DateTime(2025, 12, 8, 17, 57, 27, 355, DateTimeKind.Local).AddTicks(8924)
                         },
                         new
                         {
                             Id = 2,
                             Description = "Descr",
                             Name = "Service 2",
-                            TimeOfCreation = new DateTime(2025, 12, 9, 8, 52, 2, 414, DateTimeKind.Local).AddTicks(5006)
+                            TimeOfCreation = new DateTime(2025, 12, 8, 17, 57, 27, 357, DateTimeKind.Local).AddTicks(359)
                         },
                         new
                         {
                             Id = 3,
                             Description = "Descri",
                             Name = "Service 3",
-                            TimeOfCreation = new DateTime(2025, 12, 9, 8, 52, 2, 414, DateTimeKind.Local).AddTicks(5020)
+                            TimeOfCreation = new DateTime(2025, 12, 8, 17, 57, 27, 357, DateTimeKind.Local).AddTicks(371)
                         },
                         new
                         {
                             Id = 4,
                             Description = "Descrip",
                             Name = "Service 4",
-                            TimeOfCreation = new DateTime(2025, 12, 9, 8, 52, 2, 414, DateTimeKind.Local).AddTicks(5022)
+                            TimeOfCreation = new DateTime(2025, 12, 8, 17, 57, 27, 357, DateTimeKind.Local).AddTicks(374)
                         },
                         new
                         {
                             Id = 5,
                             Description = "Descript",
                             Name = "Service 5",
-                            TimeOfCreation = new DateTime(2025, 12, 9, 8, 52, 2, 414, DateTimeKind.Local).AddTicks(5024)
+                            TimeOfCreation = new DateTime(2025, 12, 8, 17, 57, 27, 357, DateTimeKind.Local).AddTicks(375)
                         });
                 });
 #pragma warning restore 612, 618

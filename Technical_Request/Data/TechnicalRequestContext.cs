@@ -15,6 +15,7 @@ namespace Technical_Request.Data
         public DbSet<ServiceSystem> ServiceSystems { get; set; }
         public DbSet<ResponsiblePerson> ResponsiblePersons { get; set; }
 
+        public DbSet<EmployeeView> ResponsiblePersonActivities { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -51,6 +52,7 @@ namespace Technical_Request.Data
                 new Employee { Id = 5, FirstName = "Mathew", Surname = "Jacob", LastName = "Powel", PIN = "2245006422", DateAdded = new DateTime(2024, 6, 2) }
             );
 
+            modelBuilder.Entity<EmployeeView>().HasNoKey().ToView(nameof(ResponsiblePersonActivities));
         }
     }
 }
