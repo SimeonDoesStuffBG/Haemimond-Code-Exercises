@@ -53,20 +53,22 @@ GET {{HostAddress}}/api/systems
 
 ###
 
-DELETE {{HostAddress}}/api/systems/4
+DELETE {{HostAddress}}/api/systems/3
 
 ###
 
 GET {{HostAddress}}/api/systems/3
 
 ###
+GET {{HostAddress}}/api/systems/6/name
 
-PUT {{HostAddress}}/api/systems/1
+###
+PUT {{HostAddress}}/api/systems/6
 Content-Type: application/json
 
 {
-  "Name":"dfhndskfhlas",
-  "Code":"362",
+  "Name":"System 6",
+  "Code":"4573",
   "Parent":5
 }
 

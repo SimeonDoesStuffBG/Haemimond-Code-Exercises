@@ -28,6 +28,32 @@ namespace Technical_Request.Controllers
             return Ok(await Systems.ToListAsync());
         }
 
+        [HttpGet("{id}/name")]
+        public async Task<ActionResult<string>> GetSystemFullName(int id)
+        {
+            string name;
+            Models.System? system = await Systems.FindAsync(id);
+            if (system == null) 
+            {
+                return NotFound();
+            }
+            name = system.Name;
+            int? parent = system.Parent;
+            List<int?> parents = new List<int?>();
+            while (parent != null)
+            {
+                Models.System? parentSystem = await Systems.FindAsync(parent);
+                if (parentSystem == null || parents.Contains(parentSystem.Id))
+                {
+                    break;
+                }
+                name = $"{parentSystem.Name}.{name}";
+                parents.Add(parent);
+                parent = parentSystem.Parent;
+            }
+            return Ok(name);
+        }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<Models.System>> GetSystemById(int id) 
         {
@@ -116,7 +142,12 @@ namespace Technical_Request.Controllers
             {
                 return NoContent();
             }
-
+            List<Models.System> childSystems = await Systems.Where(s => s.Parent == id).ToListAsync();
+            foreach (Models.System childSystem in childSystems) 
+            {
+                childSystem.Parent = systemToDelete.Parent;
+            }
+            await context.SaveChangesAsync();
             Systems.Remove(systemToDelete);
             await context.SaveChangesAsync();
             return NoContent();
