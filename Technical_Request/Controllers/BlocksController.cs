@@ -71,10 +71,7 @@ namespace Technical_Request.Controllers
             {
                 return NotFound();
             }
-            if (blockToEdit.Id != editedBlock.Id)
-            {
-                return BadRequest("You cannot change a block's ID");
-            }
+
             Block? testBlock = await Blocks.FirstOrDefaultAsync(b => b.Code == editedBlock.Code);
             if(testBlock != null && blockToEdit.Code != testBlock.Code)
             {
