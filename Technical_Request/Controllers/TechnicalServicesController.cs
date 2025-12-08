@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Technical_Request.Data;
 using Technical_Request.Models;
 
 namespace Technical_Request.Controllers
@@ -8,21 +10,27 @@ namespace Technical_Request.Controllers
     [ApiController]
     public class TechnicalServicesController : ControllerBase
     {
-        private static List<TechnicalService> technicalServices = new List<TechnicalService>
+        private readonly TechnicalRequestContext context;
+
+        private DbSet<TechnicalService> TechnicalServices
         {
-            
-        };
+            get {  return context.TechnicalServices; }
+        }
+        public TechnicalServicesController(TechnicalRequestContext _context) 
+        {
+            context = _context;
+        }
 
         [HttpGet]
-        public ActionResult<List<TechnicalService>> GetTechnicalServices()
+        public async Task<ActionResult<List<TechnicalService>>> GetTechnicalServices()
         {
-            return Ok(technicalServices);
+            return Ok(await TechnicalServices.ToListAsync());
         }
 
         [HttpGet("{id}")]
-        public ActionResult<TechnicalService> GetTechnicalServiceById(int id)
+        public async Task<ActionResult<TechnicalService>> GetTechnicalServiceById(int id)
         {
-            TechnicalService? technicalService = technicalServices.FirstOrDefault(s => id == s.Id);
+            TechnicalService? technicalService = await TechnicalServices.FindAsync(id);
             if (technicalService == null)
             {
                 return NotFound();
@@ -31,57 +39,49 @@ namespace Technical_Request.Controllers
         }
 
         [HttpPost]
-        public ActionResult<TechnicalService> CreateTechnicalService(TechnicalService newTechnicalService)
+        public async Task<ActionResult<TechnicalService>> CreateTechnicalService(TechnicalService newTechnicalService)
         {
             if(newTechnicalService == null)
             {
                 return BadRequest();
             }
-            TechnicalService? existingTechService = technicalServices.FirstOrDefault(s => newTechnicalService.Id == s.Id);
-            if (existingTechService != null)
-            {
-                return Conflict();
-            }
-
-            technicalServices.Add(newTechnicalService);
+            
+            TechnicalServices.Add(newTechnicalService);
+            context.SaveChanges();
             return CreatedAtAction(nameof(GetTechnicalServiceById), new { id = newTechnicalService.Id }, newTechnicalService);
         }
 
         [HttpPut("{id}")]
-        public IActionResult editTechnicalService(int id, TechnicalService editedTechnicalService)
+        public async Task<IActionResult> EditTechnicalService(int id, TechnicalService editedTechnicalService)
         {
             if(editedTechnicalService == null)
             {
                 return BadRequest();
             }
-            TechnicalService? technicalServiceToEdit = technicalServices.FirstOrDefault(s => s.Id == id);
+            TechnicalService? technicalServiceToEdit = await TechnicalServices.FindAsync(id);
             if(technicalServiceToEdit == null)
             {
                 return NotFound();
             }
-            TechnicalService? testTechService = technicalServices.FirstOrDefault(s => s.Id == id);
-            if(testTechService != null && testTechService.Id != technicalServiceToEdit.Id)
-            {
-                return Conflict();
-            }
-
-            technicalServiceToEdit.Id = editedTechnicalService.Id;
+           
             technicalServiceToEdit.Name = editedTechnicalService.Name;
             technicalServiceToEdit.Description = editedTechnicalService.Description;
 
+            await context.SaveChangesAsync();
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteTechnicalService(int id)
+        public async Task<IActionResult> DeleteTechnicalService(int id)
         {
-            TechnicalService? technicalServiceToDelete = technicalServices.FirstOrDefault(s => s.Id == id);
+            TechnicalService? technicalServiceToDelete = await TechnicalServices.FindAsync(id);
             if (technicalServiceToDelete == null) 
             {
                 return NotFound();
             }
 
-            technicalServices.Remove(technicalServiceToDelete);
+            TechnicalServices.Remove(technicalServiceToDelete);
+            await context.SaveChangesAsync();
             return NoContent();
         }
     }
