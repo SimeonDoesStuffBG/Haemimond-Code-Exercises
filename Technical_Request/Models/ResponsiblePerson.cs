@@ -4,8 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Technical_Request.Models
 {
-    [PrimaryKey(nameof(ServiceId), nameof(EmployeeId))]
-    [Index(nameof(EmployeeId), nameof(ServiceId), nameof(Activity), IsUnique =true)]
+    [PrimaryKey(nameof(ServiceId), nameof(Activity))]
+    [Index(nameof(ServiceId), nameof(Activity), IsUnique =true)]
     public class ResponsiblePerson
     {
         public static readonly string[] Activities =

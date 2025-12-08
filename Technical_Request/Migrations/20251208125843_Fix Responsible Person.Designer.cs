@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Technical_Request.Data;
 
@@ -11,9 +12,11 @@ using Technical_Request.Data;
 namespace Technical_Request.Migrations
 {
     [DbContext(typeof(TechnicalRequestContext))]
-    partial class TechnicalRequestContextModelSnapshot : ModelSnapshot
+    [Migration("20251208125843_Fix Responsible Person")]
+    partial class FixResponsiblePerson
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

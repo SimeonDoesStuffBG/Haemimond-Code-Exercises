@@ -7,9 +7,9 @@ namespace Technical_Request.Models
     public class ServiceBlock
     {
         [ForeignKey(nameof(Service))]
-        int ServiceId { get; set; }
+        public int ServiceId { get; set; }
         [ForeignKey(nameof(Block))]
-        int BlockId { get; set; }
+        public int BlockId { get; set; }
 
         private Block Block { get; set; }
         private TechnicalService Service { get; set; }

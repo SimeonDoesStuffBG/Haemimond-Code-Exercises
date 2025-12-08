@@ -76,13 +76,16 @@ namespace Technical_Request.Controllers
             if (editedSystem.Parent != null)
             {
                 int? parentId = editedSystem.Parent;
+                List<int?> parents = [];
                 do
                 {
                     Models.System? parent = await Systems.FindAsync(parentId);
-                    if (parent == null || parent.Id == editedSystem.Id)
+                    
+                    if (parent == null || parents.Contains(parentId))
                     {
                         return BadRequest("Invalid parent");
                     }
+                    parents.Add(parentId);
                     parentId = parent.Parent;
                 } while (parentId != null);
             }

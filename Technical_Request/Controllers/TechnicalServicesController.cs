@@ -84,5 +84,111 @@ namespace Technical_Request.Controllers
             await context.SaveChangesAsync();
             return NoContent();
         }
+
+        [HttpPost("{serviceId}/blocks/{blockId}")]
+        public async Task<IActionResult> AddBlock(int serviceId, int blockId)
+        {
+            TechnicalService? technicalService = await TechnicalServices.FindAsync(serviceId);
+            Block? block = await context.Blocks.FindAsync(blockId);
+            if (technicalService==null || block == null)
+            {
+                return NotFound();
+            }
+            ServiceBlock? testServiceBlock = await context.ServiceBlocks.FindAsync(serviceId, blockId);
+            if(testServiceBlock != null) 
+            {
+                return Conflict();
+            }
+            ServiceBlock serviceBlock = new ServiceBlock { BlockId = blockId, ServiceId = serviceId };
+            context.ServiceBlocks.Add(serviceBlock);
+            await context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        [HttpDelete("{serviceId}/blocks/{blockId}")]
+        public async Task<IActionResult> DeleteBlock(int serviceId, int blockId)
+        {
+            ServiceBlock? serviceBlock = await context.ServiceBlocks.FindAsync(serviceId, blockId);
+            if(serviceBlock == null)
+            {
+                return NotFound();
+            }
+
+            context.ServiceBlocks.Remove(serviceBlock);
+            await context.SaveChangesAsync();
+            return NoContent();
+        }
+
+        [HttpPost("{serviceId}/systems/{systemId}")]
+        public async Task<IActionResult> AddSystem(int serviceId, int systemId)
+        {
+            TechnicalService? technicalService = await TechnicalServices.FindAsync(serviceId);
+            Models.System? system = await context.Systems.FindAsync(systemId);
+            if(system == null || technicalService == null)
+            {
+                return NotFound();
+            }
+            ServiceSystem? existingServiceSystem = await context.ServiceSystems.FindAsync(serviceId, systemId);
+            if(existingServiceSystem != null)
+            {
+                return Conflict();
+            }
+            ServiceSystem serviceSystem = new ServiceSystem { SystemId = systemId, ServiceId = serviceId };
+            context.ServiceSystems.Add(serviceSystem);
+            await context.SaveChangesAsync();
+            return NoContent();
+        }
+
+        [HttpDelete("{serviceId}/systems/{systemId}")]
+        public async Task<IActionResult> RemoveSystem(int serviceId, int systemId)
+        {
+            ServiceSystem? serviceSystem = await context.ServiceSystems.FindAsync(serviceId, systemId);
+            if (serviceSystem == null)
+            {
+                return NotFound();
+            }
+
+            context.ServiceSystems.Remove(serviceSystem);
+            await context.SaveChangesAsync();
+            return NoContent();
+        }
+
+        [HttpPost("{serviceId}/ResponsiblePersons/{activity}/{employeeId}")]
+        public async Task<IActionResult> AddResponsiblePerson(int serviceId, int employeeId, string activity)
+        {
+            TechnicalService? technicalService = await TechnicalServices.FindAsync(serviceId);
+            Employee? employee = await context.Employees.FindAsync(employeeId);
+            bool validActivity = ResponsiblePerson.Activities.Contains(activity);
+            if (employee == null || technicalService == null || !validActivity) 
+            {
+                return NotFound();
+            }
+            ResponsiblePerson? existingResponsiblePerson = await context.ResponsiblePersons.FindAsync(serviceId, activity);
+            if(existingResponsiblePerson != null)
+            {
+                return Conflict();
+            }
+
+            ResponsiblePerson responsiblePerson = new ResponsiblePerson { ServiceId=serviceId, EmployeeId =employeeId, Activity = activity };
+            context.ResponsiblePersons.Add(responsiblePerson);
+            await context.SaveChangesAsync();
+            return NoContent();
+        }
+
+        [HttpDelete("{serviceId}/ResponsiblePersons/{activity}")]
+        public async Task<IActionResult> RemoveResponsiblePerson(int serviceId, string activity)
+        {
+            ResponsiblePerson? responsiblePerson = await context.ResponsiblePersons.FindAsync(serviceId, activity);
+
+            if (responsiblePerson == null) 
+            {
+                return NotFound();
+            }
+
+            context.ResponsiblePersons.Remove(responsiblePerson);
+            await context.SaveChangesAsync();
+            return NoContent();
+        }
     }
 }
