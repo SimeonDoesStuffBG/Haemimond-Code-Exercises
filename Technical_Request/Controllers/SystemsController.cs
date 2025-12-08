@@ -92,10 +92,6 @@ namespace Technical_Request.Controllers
                 return NotFound();
             }
 
-            if(systemToEdit.Id != editedSystem.Id)
-            {
-                return BadRequest("You cannot change a system's ID");
-            }
             Models.System? testSystem = await Systems.FirstOrDefaultAsync(s => s.Code == systemToEdit.Code);
             if(testSystem != null && testSystem.Code != editedSystem.Code)
             {
