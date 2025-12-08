@@ -12,7 +12,8 @@ namespace Technical_Request.Controllers
     public class BlocksController : ControllerBase
     {
         private readonly TechnicalRequestContext context;
-        private DbSet<Block> Blocks{
+        private DbSet<Block> Blocks
+        {
             get { return context.Blocks; }
         }
 
@@ -70,12 +71,11 @@ namespace Technical_Request.Controllers
             {
                 return NotFound();
             }
-            Block? testBlock = await Blocks.FindAsync(editedBlock.Id);
-            if (testBlock != null && blockToEdit.Id != testBlock.Id) 
+            if (blockToEdit.Id != editedBlock.Id)
             {
-                return Conflict();
+                return BadRequest("You cannot change a block's ID");
             }
-            testBlock = await Blocks.FirstOrDefaultAsync(b => b.Code == editedBlock.Code);
+            Block? testBlock = await Blocks.FirstOrDefaultAsync(b => b.Code == editedBlock.Code);
             if(testBlock != null && blockToEdit.Code != testBlock.Code)
             {
                 return Conflict();
