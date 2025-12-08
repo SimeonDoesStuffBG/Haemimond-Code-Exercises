@@ -42,10 +42,9 @@ POST {{HostAddress}}/api/systems
 Content-Type: application/json
 
 {
-  "Id" : 7,
   "Name":"System 6",
   "Code":"4573",
-  "Parent" : 7
+  "Parent" : 3
 }
 
 ###
@@ -66,9 +65,8 @@ PUT {{HostAddress}}/api/systems/1
 Content-Type: application/json
 
 {
-  "Id":1,
   "Name":"dfhndskfhlas",
-  "Code":"332",
+  "Code":"362",
   "Parent":5
 }
 
@@ -128,7 +126,6 @@ Accept: application/json
 POST {{HostAddress}}/api/employees
 Content-Type: application/json
 {
-  "Id": 6,
   "FirstName":"Name",
   "Surname":"Surname",
   "LastName":"Family",
@@ -139,7 +136,6 @@ Content-Type: application/json
 PUT {{HostAddress}}/api/employees/3
 Content-Type: application/json
 {
-  "Id":3,
   "FirstName":"Hans",
   "Surname":"Christian",
   "LastName":"Anderson",

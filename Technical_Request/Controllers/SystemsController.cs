@@ -55,7 +55,7 @@ namespace Technical_Request.Controllers
                     return BadRequest("Invalid parent");
                 }
             }
-            Models.System? testSystem = await Systems.FirstOrDefaultAsync(i=>i.Id==newSystem.Id || i.Code==newSystem.Code);
+            Models.System? testSystem = await Systems.FirstOrDefaultAsync(i=>i.Code==newSystem.Code);
             if (testSystem != null) 
             {
                 return Conflict();
@@ -92,8 +92,8 @@ namespace Technical_Request.Controllers
                 return NotFound();
             }
 
-            Models.System? testSystem = await Systems.FirstOrDefaultAsync(s => s.Code == systemToEdit.Code);
-            if(testSystem != null && testSystem.Code != editedSystem.Code)
+            Models.System? testSystem = await Systems.FirstOrDefaultAsync(s => s.Code == editedSystem.Code);
+            if(testSystem != null && testSystem.Code != systemToEdit.Code)
             {
                 return Conflict();
             }

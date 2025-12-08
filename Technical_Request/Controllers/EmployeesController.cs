@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Technical_Request.Data;
 using Technical_Request.Models;
 
 namespace Technical_Request.Controllers
@@ -8,21 +10,28 @@ namespace Technical_Request.Controllers
     [ApiController]
     public class EmployeesController : ControllerBase
     {
-        private static List<Employee> employees = new List<Employee>
+        private readonly TechnicalRequestContext context;
+
+        private DbSet<Employee> Employees
         {
-            
-        };
+            get { return context.Employees; }
+        }
+
+        public EmployeesController(TechnicalRequestContext _context)
+        {
+            context = _context;
+        }
 
         [HttpGet]
-        public ActionResult<List<Employee>> GetEmployees()
+        public async Task<ActionResult<List<Employee>>> GetEmployees()
         {
-            return Ok(employees);
+            return Ok(await Employees.ToListAsync());
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Employee> GetEmployeeByID(int id)
+        public async Task<ActionResult<Employee>> GetEmployeeByID(int id)
         {
-            Employee? employee = employees.FirstOrDefault(e => e.Id == id);
+            Employee? employee = await Employees.FindAsync(id);
             if(employee == null)
             {
                 return NotFound();
@@ -32,59 +41,62 @@ namespace Technical_Request.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Employee> CreateEmployee(Employee newEmployee)
+        public async Task<ActionResult<Employee>> CreateEmployee(Employee newEmployee)
         {
             if (newEmployee == null)
             {
                 return BadRequest();
             }
-            Employee? existingEmployee = employees.FirstOrDefault(e => e.Id == newEmployee.Id);
+            Employee? existingEmployee = await Employees.FirstOrDefaultAsync(e=>e.PIN == newEmployee.PIN);
             if (existingEmployee != null)
             {
                 return Conflict();
             }
 
-            employees.Add(newEmployee);
+            Employees.Add(newEmployee);
+            await context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetEmployeeByID), new { id = newEmployee.Id }, newEmployee);
         }
 
         [HttpPut("{id}")]
-        public IActionResult EditEmployee(int id, Employee editedEmployee)
+        public async Task<IActionResult> EditEmployee(int id, Employee editedEmployee)
         {
             if(editedEmployee == null)
             {
                 return BadRequest();
             }
-            Employee? employeeToEdit = employees.FirstOrDefault(e => e.Id == id);
+            Employee? employeeToEdit = await Employees.FindAsync(id);
             if(employeeToEdit == null)
             {
                 return NotFound();
             }
 
-            Employee? testEmployee = employees.FirstOrDefault(e => e.Id == editedEmployee.Id);
-            if(testEmployee != null && testEmployee.Id != employeeToEdit.Id)
+            Employee? testEmployee = await Employees.FirstOrDefaultAsync(e => e.PIN == editedEmployee.PIN);
+            if(testEmployee != null && testEmployee.PIN != employeeToEdit.PIN)
             {
                 return Conflict();
             }
 
-            employeeToEdit.Id = editedEmployee.Id;
             employeeToEdit.FirstName = editedEmployee.FirstName;
             employeeToEdit.Surname = editedEmployee.Surname;
             employeeToEdit.LastName = editedEmployee.LastName;
             employeeToEdit.PIN = editedEmployee.PIN;
 
+            await context.SaveChangesAsync();
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteEmployee(int id) 
+        public async Task<IActionResult> DeleteEmployee(int id) 
         {
-            Employee? employeeToDelete = employees.FirstOrDefault(e => e.Id == id);
+            Employee? employeeToDelete = await Employees.FindAsync(id);
             if(employeeToDelete == null)
             {
                 return NotFound();
             }
-            employees.Remove(employeeToDelete);
+            
+            Employees.Remove(employeeToDelete);
+            await context.SaveChangesAsync();
             return NoContent();
         }
     }
