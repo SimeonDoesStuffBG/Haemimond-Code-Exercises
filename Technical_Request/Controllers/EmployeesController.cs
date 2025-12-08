@@ -28,6 +28,18 @@ namespace Technical_Request.Controllers
             return Ok(await Employees.ToListAsync());
         }
 
+        [HttpGet("pin={pin}")]
+        public async Task<ActionResult<Employee>> GetEmployeeByPIN(string pin)
+        {
+            Employee? employee = await Employees.OrderByDescending(e=>e.DateAdded).FirstOrDefaultAsync(e => e.PIN == pin);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+            
+            return Ok(employee);
+        }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<Employee>> GetEmployeeByID(int id)
         {
@@ -52,6 +64,7 @@ namespace Technical_Request.Controllers
             {
                 return Conflict();
             }
+            newEmployee.DateAdded = DateTime.Now;
 
             Employees.Add(newEmployee);
             await context.SaveChangesAsync();
@@ -70,18 +83,23 @@ namespace Technical_Request.Controllers
             {
                 return NotFound();
             }
-
-            Employee? testEmployee = await Employees.FirstOrDefaultAsync(e => e.PIN == editedEmployee.PIN);
-            if(testEmployee != null && testEmployee.PIN != employeeToEdit.PIN)
+            
+            Employee? previousNameEmployee = await Employees.FirstOrDefaultAsync(e => 
+                e.FirstName == editedEmployee.FirstName 
+                && e.Surname == editedEmployee.Surname 
+                && e.LastName == editedEmployee.LastName 
+                );
+            if (previousNameEmployee != null && previousNameEmployee.PIN == employeeToEdit.PIN)
             {
-                return Conflict();
+                previousNameEmployee.DateAdded = DateTime.Now;
             }
-
-            employeeToEdit.FirstName = editedEmployee.FirstName;
-            employeeToEdit.Surname = editedEmployee.Surname;
-            employeeToEdit.LastName = editedEmployee.LastName;
-            employeeToEdit.PIN = editedEmployee.PIN;
-
+            else
+            {
+                editedEmployee.PIN = employeeToEdit.PIN;
+                editedEmployee.DateAdded = DateTime.Now;
+                Employees.Add(editedEmployee);
+            }
+                              
             await context.SaveChangesAsync();
             return NoContent();
         }

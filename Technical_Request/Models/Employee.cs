@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Technical_Request.Models
 {
-    [Index(nameof(PIN), IsUnique = true )]
+    [Index(nameof(PIN), nameof(DateAdded), IsUnique = true, IsDescending = new[] {false, true} )]
     public class Employee
     {
         public int Id { get; set; }
@@ -14,6 +14,7 @@ namespace Technical_Request.Models
         [DataType("nvarchar(100)")]
         public string LastName {  get; set; }
         [DataType("nvarchar(20")]
-        public string PIN {  get; set; }
+        public string? PIN {  get; set; }
+        public DateTime? DateAdded { get; set; }
     }
 }

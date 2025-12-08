@@ -44,11 +44,11 @@ namespace Technical_Request.Data
             );
 
             modelBuilder.Entity<Employee>().HasData(
-                new Employee { Id = 1, FirstName = "John", Surname = "Leo", LastName = "Connor", PIN = "2245666422" },
-                new Employee { Id = 2, FirstName = "Anton", Surname = "Tsvyatkov", LastName = "Milev", PIN = "2243211422" },
-                new Employee { Id = 3, FirstName = "Hristo", Surname = "Pavlov", LastName = "Kirilov", PIN = "2245663222" },
-                new Employee { Id = 4, FirstName = "John", Surname = "Johnathan", LastName = "Johnson", PIN = "2245556422" },//Doer of Job at place
-                new Employee { Id = 5, FirstName = "Mathew", Surname = "Jacob", LastName = "Powel", PIN = "2245006422" }
+                new Employee { Id = 1, FirstName = "John", Surname = "Leo", LastName = "Connor", PIN = "2245666422", DateAdded=new DateTime(2023,4,12) },
+                new Employee { Id = 2, FirstName = "Anton", Surname = "Tsvyatkov", LastName = "Milev", PIN = "2243211422", DateAdded = new DateTime(2023, 1, 29) },
+                new Employee { Id = 3, FirstName = "Hristo", Surname = "Pavlov", LastName = "Kirilov", PIN = "2245663222", DateAdded = new DateTime(2021, 2, 22) },
+                new Employee { Id = 4, FirstName = "John", Surname = "Johnathan", LastName = "Johnson", PIN = "2245556422", DateAdded = new DateTime(2019, 9, 15) },//Doer of Job at place
+                new Employee { Id = 5, FirstName = "Mathew", Surname = "Jacob", LastName = "Powel", PIN = "2245006422", DateAdded = new DateTime(2024, 6, 2) }
             );
 
         }

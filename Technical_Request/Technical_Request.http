@@ -123,6 +123,11 @@ Accept: application/json
 
 ###
 
+GET {{HostAddress}}/api/employees/pin=33215523
+Accept: application/json
+
+###
+
 POST {{HostAddress}}/api/employees
 Content-Type: application/json
 {
@@ -133,13 +138,12 @@ Content-Type: application/json
 }
 ###
 
-PUT {{HostAddress}}/api/employees/3
+PUT {{HostAddress}}/api/employees/16
 Content-Type: application/json
 {
-  "FirstName":"Hans",
-  "Surname":"Christian",
-  "LastName":"Anderson",
-  "PIN":"33215523"
+  "FirstName":"Michael",
+  "Surname":"Williams",
+  "LastName":"John"
 }
 ###
 
