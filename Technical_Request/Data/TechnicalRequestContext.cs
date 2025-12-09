@@ -14,7 +14,7 @@ namespace Technical_Request.Data
         public DbSet<ServiceBlock> ServiceBlocks { get; set; }
         public DbSet<ServiceSystem> ServiceSystems { get; set; }
         public DbSet<ResponsiblePerson> ResponsiblePersons { get; set; }
-
+        public DbSet<User> Users { get; set; }
         public DbSet<EmployeeView> ResponsiblePersonActivities { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
