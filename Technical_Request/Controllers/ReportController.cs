@@ -36,11 +36,11 @@ namespace Technical_Request.Controllers
 
                 idsByParameters.AddRange(idsByEmployee);
             }
-            if (!reportParameters.Blocks.IsNullOrEmpty())
+            if (reportParameters.Blocks!=null &&reportParameters.Blocks.Count>=0)
             {
                 List<int> blockIds = await context.Blocks.Where(b=>reportParameters.Blocks.Contains(b.Code)).Select(b=>b.Id).ToListAsync();
 
-                if (blockIds.IsNullOrEmpty())
+                if (blockIds.Count==0)
                 {
                     return NotFound("Blocks do not exist");
                 }
@@ -51,7 +51,7 @@ namespace Technical_Request.Controllers
             }
 
             List<int> idsFromSystems =await IdsFromSystems(reportParameters.Systems);
-            if (!reportParameters.Systems.IsNullOrEmpty() && idsFromSystems.IsNullOrEmpty())
+            if (reportParameters.Systems!=null && reportParameters.Systems.Count >= 0 && idsFromSystems.Count == 0)
             {
                 return NotFound("No valid systems were found");
             }
@@ -59,9 +59,9 @@ namespace Technical_Request.Controllers
 
             List<TechnicalService> services = await context.TechnicalServices.Where(s =>
                 (reportParameters.TimeOfCreation == null || s.TimeOfCreation.Date == reportParameters.TimeOfCreation)
-                &&(idsByParameters.IsNullOrEmpty() || idsByParameters.Contains(s.Id)))
+                &&(idsByParameters.Count == 0 || idsByParameters.Contains(s.Id)))
                 .ToListAsync();
-            if (services.IsNullOrEmpty())
+            if (services.Count == 0)
             {
                 return NotFound("No services with these parameters exist");
             }
@@ -91,7 +91,7 @@ namespace Technical_Request.Controllers
         private async Task<List<int>> IdsFromSystems(List<string>? systemCodes)
         {
             List<int> idsFromSystems = new List<int>();
-            if (!systemCodes.IsNullOrEmpty())
+            if (systemCodes!=null && systemCodes.Count>=0)
             {
                 List<int> systems = await context.Systems
                     .Where(s => systemCodes.Contains(s.Code)&&s.Parent!=null)

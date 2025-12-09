@@ -1,18 +1,21 @@
 @HostAddress = http://localhost:5119
+@Auth = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJTaW1lb25nbWlsZXYiLCJqdGkiOiI0MTU5ZmVkNi1iOWU1LTRjYTUtYWUyZi1lYjMwMGI4NWQ5MWUiLCJleHAiOjE3NjUyODcxMTYsImlzcyI6ImxvY2FsaG9zdDo3MDAwIiwiYXVkIjoibG9jYWxob3N0OjcwMDAifQ.ua5mYibwTxPk_6mucOCwpSQ1KymRC_sHqqluR2rO3Ss
 
 GET {{HostAddress}}/api/blocks/
 Accept: application/json
+Authorization: {{Auth}}
 
 ###
 
 GET {{HostAddress}}/api/blocks/3
 Accept: application/json
+Authorization: {{Auth}}
 
 ###
 
 POST {{HostAddress}}/api/blocks
 Content-Type: application/json
-
+Authorization: {{Auth}}
 {
   "Name": "Lego",
   "Code": "3352"
@@ -22,7 +25,7 @@ Content-Type: application/json
 
 PUT {{HostAddress}}/api/blocks/4
 Content-Type: application/json
-
+Authorization: {{Auth}}
 {
   "Id": 4,
   "Name": "Globglobgabgalab",
@@ -33,6 +36,7 @@ Content-Type: application/json
 
 
 DELETE {{HostAddress}}/api/blocks/5
+Authorization: {{Auth}}
 
 ###
 
@@ -40,7 +44,7 @@ DELETE {{HostAddress}}/api/blocks/5
 
 POST {{HostAddress}}/api/systems
 Content-Type: application/json
-
+Authorization: {{Auth}}
 {
   "Name":"System 7",
   "Code":"2342",
@@ -50,22 +54,26 @@ Content-Type: application/json
 ###
 
 GET {{HostAddress}}/api/systems
+Authorization: {{Auth}}
 
 ###
 
 DELETE {{HostAddress}}/api/systems/3
+Authorization: {{Auth}}
 
 ###
 
 GET {{HostAddress}}/api/systems/3
+Authorization: {{Auth}}
 
 ###
 GET {{HostAddress}}/api/systems/6/name
+Authorization: {{Auth}}
 
 ###
 PUT {{HostAddress}}/api/systems/1
 Content-Type: application/json
-
+Authorization: {{Auth}}
 {
   "Name":"System 1",
   "Code":"362"
@@ -75,16 +83,19 @@ Content-Type: application/json
 
 GET {{HostAddress}}/api/TechnicalServices
 Accept: application/json
+Authorization: {{Auth}}
 
 ###
 
 GET {{HostAddress}}/api/TechnicalServices/2
 Accept: application/json
+Authorization: {{Auth}}
 
 ###
 
 POST {{HostAddress}}/api/TechnicalServices
 Content-Type: application/json
+Authorization: {{Auth}}
 {
   "Id": 6,
   "Name": "Service 4",
@@ -99,6 +110,7 @@ Content-Type: application/json
 
 PUT {{HostAddress}}/api/TechnicalServices/1
 Content-Type: application/json
+Authorization: {{Auth}}
 {
   "Id":1,
   "Name": "Service 01",
@@ -111,26 +123,31 @@ Content-Type: application/json
 ###
 DELETE {{HostAddress}}/api/TechnicalServices/4
 Accept: application/json
+Authorization: {{Auth}}
 
 ###
 
 GET {{HostAddress}}/api/employees
 Accept: application/json
+Authorization: {{Auth}}
 
 ###
 
 GET {{HostAddress}}/api/employees/4
 Accept: application/json
+Authorization: {{Auth}}
 
 ###
 
 GET {{HostAddress}}/api/employees/pin=33215523
 Accept: application/json
+Authorization: {{Auth}}
 
 ###
 
 POST {{HostAddress}}/api/employees
 Content-Type: application/json
+Authorization: {{Auth}}
 {
   "FirstName":"Name",
   "Surname":"Surname",
@@ -141,6 +158,7 @@ Content-Type: application/json
 
 PUT {{HostAddress}}/api/employees/16
 Content-Type: application/json
+Authorization: {{Auth}}
 {
   "FirstName":"Michael",
   "Surname":"Williams",
@@ -150,42 +168,68 @@ Content-Type: application/json
 
 DELETE {{HostAddress}}/api/employees/5
 Accept: application/json
+Authorization: {{Auth}}
 
 ###
 
 POST {{HostAddress}}/api/technicalServices/1/blocks/1
 Accept: application/json
+Authorization: {{Auth}}
 
 ###
 
 DELETE {{HostAddress}}/api/technicalServices/2/blocks/3
 Accept: application/json
+Authorization: {{Auth}}
 
 ###
 
   
 POST {{HostAddress}}/api/technicalServices/3/systems/1
 Accept: application/json
+Authorization: {{Auth}}
 
 ###
 
 DELETE {{HostAddress}}/api/technicalServices/3/systems/2
 Accept: application/json
+Authorization: {{Auth}}
 
 ###
 
   POST {{HostAddress}}/api/technicalServices/3/ResponsiblePersons/verification/2
 Accept: application/json
+Authorization: {{Auth}}
 
 ###
 
 DELETE {{HostAddress}}/api/technicalServices/3/ResponsiblePersons/creation
 Accept: application/json
+Authorization: {{Auth}}
 
 ###
 
 GET {{HostAddress}}/api/report
 Content-type: application/json
+Authorization: {{Auth}}
 {
  
+}
+
+###
+POST {{HostAddress}}/api/users/register
+Content-type: application/json
+{
+  "Username": "Simeongmilev",
+  "Email":"Example@mail.mail",
+  "Password":"Pass"
+}
+
+###
+POST {{HostAddress}}/api/users/login
+Content-type: application/json
+{
+  "Username":"Simeongmilev",
+  "Email":"",
+  "Password":"Pass"
 }
