@@ -52,6 +52,47 @@ namespace Technical_Request.Data
                 new Employee { Id = 5, FirstName = "Mathew", Surname = "Jacob", LastName = "Powel", PIN = "2245006422", DateAdded = new DateTime(2024, 6, 2) }
             );
 
+            modelBuilder.Entity<ResponsiblePerson>().HasData(
+                new ResponsiblePerson { EmployeeId = 1, ServiceId = 3, Activity = "creation" },
+                new ResponsiblePerson { EmployeeId = 5, ServiceId = 2, Activity = "creation" },
+                new ResponsiblePerson { EmployeeId = 1, ServiceId = 5, Activity = "creation" },
+                new ResponsiblePerson { EmployeeId = 1, ServiceId = 5, Activity = "confirmation" },
+                new ResponsiblePerson { EmployeeId = 3, ServiceId = 2, Activity = "confirmation" },
+                new ResponsiblePerson { EmployeeId = 4, ServiceId = 1, Activity = "confirmation" },
+                new ResponsiblePerson { EmployeeId = 1, ServiceId = 1, Activity = "approval" },
+                new ResponsiblePerson { EmployeeId = 2, ServiceId = 2, Activity = "approval" },
+                new ResponsiblePerson { EmployeeId = 5, ServiceId = 3, Activity = "approval" },
+                new ResponsiblePerson { EmployeeId = 2, ServiceId = 5, Activity = "verification" },
+                new ResponsiblePerson { EmployeeId = 2, ServiceId = 3, Activity = "verification" },
+                new ResponsiblePerson { EmployeeId = 4, ServiceId = 4, Activity = "verification" },
+                new ResponsiblePerson { EmployeeId = 3, ServiceId = 2, Activity = "verification" }
+                );
+            modelBuilder.Entity<ServiceBlock>().HasData(
+                new ServiceBlock { ServiceId = 4, BlockId = 5 },
+                new ServiceBlock { ServiceId = 2, BlockId = 2 },
+                new ServiceBlock { ServiceId = 4, BlockId = 4 },
+                new ServiceBlock { ServiceId = 2, BlockId = 3 },
+                new ServiceBlock { ServiceId = 1, BlockId = 1 },
+                new ServiceBlock { ServiceId = 2, BlockId = 4 },
+                new ServiceBlock { ServiceId = 4, BlockId = 3 },
+                new ServiceBlock { ServiceId = 5, BlockId = 2 },
+                new ServiceBlock { ServiceId = 1, BlockId = 5 },
+                new ServiceBlock { ServiceId = 1, BlockId = 3 }
+            );
+            
+            modelBuilder.Entity<ServiceSystem>().HasData(
+                new ServiceSystem { ServiceId = 3, SystemId = 3 },
+                new ServiceSystem { ServiceId = 5, SystemId = 2 },
+                new ServiceSystem { ServiceId = 5, SystemId = 1 },
+                new ServiceSystem { ServiceId = 3, SystemId = 4 },
+                new ServiceSystem { ServiceId = 5, SystemId = 5 },
+                new ServiceSystem { ServiceId = 2, SystemId = 1 },
+                new ServiceSystem { ServiceId = 4, SystemId = 4 },
+                new ServiceSystem { ServiceId = 5, SystemId = 3 },
+                new ServiceSystem { ServiceId = 4, SystemId = 1 },
+                new ServiceSystem { ServiceId = 2, SystemId = 3 }
+                );
+
             modelBuilder.Entity<EmployeeView>().HasNoKey().ToView(nameof(ResponsiblePersonActivities));
         }
     }
