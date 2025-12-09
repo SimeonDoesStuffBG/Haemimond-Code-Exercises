@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Technical_Request.Data;
@@ -22,12 +23,14 @@ namespace Technical_Request.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<List<TechnicalService>>> GetTechnicalServices()
         {
             return Ok(await TechnicalServices.ToListAsync());
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<TechnicalService>> GetTechnicalServiceById(int id)
         {
             TechnicalService? technicalService = await TechnicalServices.FindAsync(id);
@@ -39,6 +42,7 @@ namespace Technical_Request.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<TechnicalService>> CreateTechnicalService(TechnicalService newTechnicalService)
         {
             if(newTechnicalService == null)
@@ -52,6 +56,7 @@ namespace Technical_Request.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> EditTechnicalService(int id, TechnicalService editedTechnicalService)
         {
             if(editedTechnicalService == null)
@@ -72,6 +77,7 @@ namespace Technical_Request.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteTechnicalService(int id)
         {
             TechnicalService? technicalServiceToDelete = await TechnicalServices.FindAsync(id);
@@ -86,6 +92,7 @@ namespace Technical_Request.Controllers
         }
 
         [HttpPost("{serviceId}/blocks/{blockId}")]
+        [Authorize]
         public async Task<IActionResult> AddBlock(int serviceId, int blockId)
         {
             TechnicalService? technicalService = await TechnicalServices.FindAsync(serviceId);
@@ -107,6 +114,7 @@ namespace Technical_Request.Controllers
         }
 
         [HttpDelete("{serviceId}/blocks/{blockId}")]
+        [Authorize]
         public async Task<IActionResult> DeleteBlock(int serviceId, int blockId)
         {
             ServiceBlock? serviceBlock = await context.ServiceBlocks.FindAsync(serviceId, blockId);
@@ -121,6 +129,7 @@ namespace Technical_Request.Controllers
         }
 
         [HttpPost("{serviceId}/systems/{systemId}")]
+        [Authorize]
         public async Task<IActionResult> AddSystem(int serviceId, int systemId)
         {
             TechnicalService? technicalService = await TechnicalServices.FindAsync(serviceId);
@@ -141,6 +150,7 @@ namespace Technical_Request.Controllers
         }
 
         [HttpDelete("{serviceId}/systems/{systemId}")]
+        [Authorize]
         public async Task<IActionResult> RemoveSystem(int serviceId, int systemId)
         {
             ServiceSystem? serviceSystem = await context.ServiceSystems.FindAsync(serviceId, systemId);
@@ -155,6 +165,7 @@ namespace Technical_Request.Controllers
         }
 
         [HttpPost("{serviceId}/ResponsiblePersons/{activity}/{employeeId}")]
+        [Authorize]
         public async Task<IActionResult> AddResponsiblePerson(int serviceId, int employeeId, string activity)
         {
             TechnicalService? technicalService = await TechnicalServices.FindAsync(serviceId);
@@ -177,6 +188,7 @@ namespace Technical_Request.Controllers
         }
 
         [HttpDelete("{serviceId}/ResponsiblePersons/{activity}")]
+        [Authorize]
         public async Task<IActionResult> RemoveResponsiblePerson(int serviceId, string activity)
         {
             ResponsiblePerson? responsiblePerson = await context.ResponsiblePersons.FindAsync(serviceId, activity);

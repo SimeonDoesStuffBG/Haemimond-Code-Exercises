@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Technical_Request.Data;
@@ -23,12 +24,14 @@ namespace Technical_Request.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<List<Models.System>>> GetSystems()
         {
             return Ok(await Systems.ToListAsync());
         }
 
         [HttpGet("{id}/name")]
+        [Authorize]
         public async Task<ActionResult<string>> GetSystemFullName(int id)
         {
             string name;
@@ -55,6 +58,7 @@ namespace Technical_Request.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<Models.System>> GetSystemById(int id) 
         {
             Models.System? system = await Systems.FindAsync(id);
@@ -67,6 +71,7 @@ namespace Technical_Request.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Models.System>> CreateSystem(Models.System newSystem) 
         {
             if ( newSystem == null)
@@ -93,6 +98,7 @@ namespace Technical_Request.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> UpdateSystem(int id, Models.System editedSystem)
         {
             if(editedSystem == null)
@@ -135,6 +141,7 @@ namespace Technical_Request.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteSystem(int id)
         {
             Models.System? systemToDelete = await Systems.FindAsync(id);

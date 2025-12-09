@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata.Ecma335;
@@ -23,12 +24,14 @@ namespace Technical_Request.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<List<Block>>> GetBlocks()
         {
             return Ok(await Blocks.ToListAsync());
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<Block>> GetBlockByID(int id)
         {
             Block? block = await Blocks.FindAsync(id);
@@ -40,6 +43,7 @@ namespace Technical_Request.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Block>> CreateBlock(Block newBlock)
         {
             if (newBlock == null)
@@ -60,6 +64,7 @@ namespace Technical_Request.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> EditBlock(int id, Block editedBlock)
         {
             if (editedBlock == null)
@@ -84,6 +89,7 @@ namespace Technical_Request.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteBlock(int id)
         {
             Block? blockToDelete = await Blocks.FindAsync(id);

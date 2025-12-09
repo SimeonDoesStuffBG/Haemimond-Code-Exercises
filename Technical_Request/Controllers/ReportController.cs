@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Collections.Generic;
@@ -17,7 +18,9 @@ namespace Technical_Request.Controllers
         {
             context = _context;
         }
+
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<List<ReportObject>>> GetReport(ReportParameters reportParameters)
         {
             List<int> idsByParameters = new List<int>();

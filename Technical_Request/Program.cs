@@ -24,7 +24,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateIssuerSigningKey = true,
             ValidIssuer = "localhost:7000",
             ValidAudience = "localhost:7000",
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ScrQlcnDYK5OyE9bzp8QnO60Bdsiugfjqfgascjphsciudgsu"))
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ScrQlcnDYK5OyE9bzp8QnO60BdsiugfjqfgasKs45sciudgsu"))
         };
     });
 var app = builder.Build();

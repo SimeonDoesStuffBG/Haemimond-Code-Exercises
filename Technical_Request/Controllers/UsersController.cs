@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -60,18 +59,18 @@ namespace Technical_Request.Controllers
         
         private string GenerateJwtToken(string username)
         {
-            Claim[] claims = new Claim[]
+            Claim[] claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, username),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
-            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ScrQlcnDYK5OyE9bzp8QnO60Bdsiugfjqfgascjphsciudgsu"));
+            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ScrQlcnDYK5OyE9bzp8QnO60BdsiugfjqfgasKs45sciudgsu"));
             SigningCredentials creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             JwtSecurityToken token = new JwtSecurityToken(
-                issuer:"localhost:7000",
-                audience:"localhost:7000",
+                issuer: "localhost:7000",
+                audience: "localhost:7000",
                 claims:claims,
                 expires:DateTime.Now.AddMinutes(30),
                 signingCredentials:creds

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Technical_Request.Data;
@@ -23,12 +24,14 @@ namespace Technical_Request.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<List<Employee>>> GetEmployees()
         {
             return Ok(await Employees.ToListAsync());
         }
 
         [HttpGet("pin={pin}")]
+        [Authorize]
         public async Task<ActionResult<Employee>> GetEmployeeByPIN(string pin)
         {
             Employee? employee = await Employees.OrderByDescending(e=>e.DateAdded).FirstOrDefaultAsync(e => e.PIN == pin);
@@ -41,6 +44,7 @@ namespace Technical_Request.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<Employee>> GetEmployeeByID(int id)
         {
             Employee? employee = await Employees.FindAsync(id);
@@ -53,6 +57,7 @@ namespace Technical_Request.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Employee>> CreateEmployee(Employee newEmployee)
         {
             if (newEmployee == null)
@@ -72,6 +77,7 @@ namespace Technical_Request.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> EditEmployee(int id, Employee editedEmployee)
         {
             if(editedEmployee == null)
@@ -105,6 +111,7 @@ namespace Technical_Request.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteEmployee(int id) 
         {
             Employee? employeeToDelete = await Employees.FindAsync(id);
