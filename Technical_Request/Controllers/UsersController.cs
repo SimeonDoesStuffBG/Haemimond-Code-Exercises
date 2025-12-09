@@ -69,8 +69,8 @@ namespace Technical_Request.Controllers
             SigningCredentials creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             JwtSecurityToken token = new JwtSecurityToken(
-                issuer: "localhost:7000",
-                audience: "localhost:7000",
+                issuer: "localhost:7132",
+                audience: "localhost:7132",
                 claims:claims,
                 expires:DateTime.Now.AddMinutes(30),
                 signingCredentials:creds
